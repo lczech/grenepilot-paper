@@ -8,9 +8,9 @@ suppressMessages(library(viridis))
 print("Reading table")
 
 # Input data.
-# infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/freq_2_individuals/frequency.csv"
-infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/freq_2_individuals/head.csv"
-#infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/freq_2_individuals/test.csv"
+infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/freq_2_individuals/frequency.csv"
+# infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/freq_2_individuals/head.csv"
+# infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/freq_2_individuals/test.csv"
 data = read.table( infile, sep="\t", header=TRUE )
 # head(data)
 
@@ -43,39 +43,24 @@ colnames = c(
     #"TWOFH5_CKDL210018053-1a-AK34069-AK26896_HGKVHCCX2_L1"
 )
 
-for( i in 1:11 ) {
+# =================================================================================================
+#     Plot
+# =================================================================================================
 
-    print(paste0("At ",i, ": ", colnames[i]))
-    print(paste0(colnames[i], ".FREQ"))
+make_plots <- function(target_dir, data, cutoff){
+    dir.create(file.path(target_dir), showWarnings = FALSE)
 
-    # ggplot is a bit stubborn in selecting columns names with variables,
-    # so instead we copy the data to a column with a fixed name first...
-    # But even this is a hassle, and we also need to take into account
-    # that R renames our columns with a leading X, as they start with digits.
-    # Also, use this opportunity to convert fom ref freq to MAF.
-    # We make a copy of the data, so that we can remove rows without altering
-    # the original data. Of course, we also need a trick to make a copy of a df...
-    cpy <- data[, "CHROM", drop=FALSE]
-    cpy$POS <- data$POS
-    cpy$FREQ <- 1.0 - data[, paste0(colnames[i], ".FREQ")]
-    cpy$COV <- data[, paste0(colnames[i], ".COV")]
-    #cpy <- cpy[cpy$CHROM != "chloroplast" & cpy$CHROM != "mitochondria", ]
+    with_cutoff <- cutoff > 0
 
-    #print(head(cpy))
-    #print(tail(cpy))
-
-    # We want to ignore frequencies below a threshold
-    cutoff = 0.1
-    cpy <- cpy[cpy$FREQ > cutoff & cpy$CHROM != "chloroplast" & cpy$CHROM != "mitochondria", ]
-    #cpy <- cpy[cpy$CHROM != "chloroplast" & cpy$CHROM != "mitochondria", ]
-    #cpy <- cpy[cpy$FREQ > cutoff, ]
-    cpy <- na.omit(cpy)
+    # -------------------------------------------------------------------------
+    #     Dot plot along the genome
+    # -------------------------------------------------------------------------
 
     # For some reason, facet_wrap does not work if it is at the end... so put it after the geom_point
-    ggplot(cpy, aes(x=POS, y=FREQ)) +
+    myplot <- ggplot(data, aes(x=POS, y=FREQ)) +
         geom_hline(yintercept = 0.5, color="gray") +
-        geom_hline(yintercept = cutoff, color="red") +
         geom_point(aes(color=COV)) +
+        # geom_hline(yintercept = cutoff, color="red") +
         facet_wrap( ~ CHROM, ncol=1) +
         scale_color_viridis(direction=-1, trans="log10") +
         ylim(0, 1) +
@@ -85,14 +70,23 @@ for( i in 1:11 ) {
         #facet_wrap( ~ CHROM, ncol=1)
         #facet_wrap(vars(CHROM), ncol=1)
 
+    if(with_cutoff){
+        myplot <- myplot + geom_hline(yintercept = cutoff, color="red")
+    }
+
     # Somehow, these are saved with a transparent background,
     # so we have to set it explicitly to white here.
     # No idea why we did not need this in other plots...
-    ggsave(paste0(colnames[i],"-dot.png"), bg="white", width=16, height=12)
+    # Also, ggsave just insists on print out the size... that clutters our output.
+    suppressMessages(ggsave(paste0(target_dir, colnames[i],"-dot.png"), bg="white", width=16, height=12))
 
-    ggplot(cpy, aes(x=POS, y=FREQ)) +
+    # -------------------------------------------------------------------------
+    #     Frequency heatmap along the genome
+    # -------------------------------------------------------------------------
+
+    myplot <- ggplot(data, aes(x=POS, y=FREQ)) +
         geom_hline(yintercept = 0.5, color="gray") +
-        geom_hline(yintercept = cutoff, color="red") +
+        # geom_hline(yintercept = cutoff, color="red") +
         #geom_hex(aes(colour = ..count..), bins=50) +
         geom_bin_2d(bins=c(150,30)) +
         facet_wrap( ~ CHROM, ncol=1) +
@@ -103,10 +97,18 @@ for( i in 1:11 ) {
         ylab("MAF")
         labs(title=colnames[i])
 
-    ggsave(paste0(colnames[i],"-hex.png"), bg="white", width=16, height=12)
+    if(with_cutoff){
+        myplot <- myplot + geom_hline(yintercept = cutoff, color="red")
+    }
 
-    ggplot(cpy, aes(x=FREQ)) +
-        geom_vline( xintercept=cutoff, color="red") +
+    suppressMessages(ggsave(paste0(target_dir, colnames[i],"-heat.png"), bg="white", width=16, height=12))
+
+    # -------------------------------------------------------------------------
+    #     Histogram of frequencies
+    # -------------------------------------------------------------------------
+
+    myplot <- ggplot(data, aes(x=FREQ)) +
+        # geom_vline( xintercept=cutoff, color="red") +
         geom_histogram(bins=50) +
         geom_vline( xintercept=0.5, color="gray") +
         xlab("Frequency") +
@@ -114,17 +116,90 @@ for( i in 1:11 ) {
         #geom_vline( xintercept=cutoff, color="red") +
         labs(title=colnames[i])
 
-    ggsave(paste0(colnames[i],"-hist.png"), bg="white")
+    if(with_cutoff){
+        myplot <- myplot + geom_vline( xintercept=cutoff, color="red")
+    }
 
-    #cpy <- cpy[cpy$FREQ > cutoff, ]
+    suppressMessages(ggsave(paste0(target_dir, colnames[i],"-hist.png"), bg="white"))
 
-    #ggplot(cpy, aes(x=FREQ)) +
+    #data <- data[data$FREQ > cutoff, ]
+
+    #ggplot(data, aes(x=FREQ)) +
     #    geom_histogram(bins=50) +
     #    xlab("Frequency") +
     #    xlim(0, 1) +
     #    #geom_vline( xintercept=cutoff, color="red") +
     #    labs(title=colnames[i])
 
-    #ggsave(paste0(colnames[i],"-hist-cut.png"), bg="white")
+    #ggsave(paste0(target_dir, colnames[i],"-hist-cut.png"), bg="white")
+}
+
+# =================================================================================================
+#     Main loop over sequencing libraries
+# =================================================================================================
+
+for( i in 1:11 ) {
+
+    print(paste0("At ",i, ": ", colnames[i]))
+    # print(paste0(colnames[i], ".FREQ"))
+
+    # ggplot is a bit stubborn in selecting columns names with variables,
+    # so instead we copy the data to a column with a fixed name first...
+    # Also, use this opportunity to convert fom ref freq to MAF.
+    # We make a copy of the data, so that we can remove rows without altering
+    # the original data. Of course, we also need a trick to make a copy of a df...
+    base <- data[, "CHROM", drop=FALSE]
+    base$POS <- data$POS
+    base$FREQ <- 1.0 - data[, paste0(colnames[i], ".FREQ")]
+    base$COV <- data[, paste0(colnames[i], ".COV")]
+    base <- base[base$CHROM != "chloroplast" & base$CHROM != "mitochondria", ]
+
+    #print(head(cpy))
+    #print(tail(cpy))
+
+    # -------------------------------------------------------------------------
+    #     All data
+    # -------------------------------------------------------------------------
+
+    print(paste0("    no-cutoff: ", nrow(base)))
+    cutoff = 0
+    make_plots("no-cutoff/", base, cutoff)
+
+    # -------------------------------------------------------------------------
+    #     With cutoff at 0.1
+    # -------------------------------------------------------------------------
+
+    # We want to ignore frequencies below a threshold
+    cutoff = 0.1
+    cpy <- base[base$FREQ > cutoff, ]
+    cpy <- na.omit(cpy)
+
+    print(paste0("    cutoff-0.1: ", nrow(cpy)))
+    make_plots("cutoff-0.1/", cpy, cutoff)
+
+    # -------------------------------------------------------------------------
+    #     With coverage 100-200
+    # -------------------------------------------------------------------------
+
+    # We want to ignore frequencies below a threshold
+    cutoff = 0.1
+    cpy <- base[base$COV >= 100 & base$COV <= 200, ]
+    cpy <- na.omit(cpy)
+
+    print(paste0("    coverage-100-200: ", nrow(cpy)))
+    make_plots("coverage-100-200/", cpy, cutoff)
+
+    # -------------------------------------------------------------------------
+    #     With cutoff at 0.1 and coverage 100-200
+    # -------------------------------------------------------------------------
+
+    # We want to ignore frequencies below a threshold
+    cutoff = 0.1
+    cpy <- base[base$FREQ > cutoff, ]
+    cpy <- cpy[cpy$COV >= 100 & cpy$COV <= 200, ]
+    cpy <- na.omit(cpy)
+
+    print(paste0("    cutoff-0.1 coverage-100-200: ", nrow(cpy)))
+    make_plots("cutoff-0.1_coverage-100-200/", cpy, cutoff)
 
 }
