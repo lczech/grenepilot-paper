@@ -22,7 +22,8 @@ DATA="/lustre/scratch/lczech/grenepipe-runs/ath-evo-flowerpools-rerun/mpileup/al
 #        { "S15", "Plantpool5x" },
 #        { "S16", "PlantpoolB12345" }
 
-$GRENEDALF frequency --pileup-file $DATA --omit-na-windows --sample-name-prefix S --filter-samples-include "S7,S15" > grenedalf-fst.log
+$GRENEDALF frequency --pileup-file $DATA --omit-invariants --sample-name-prefix S --filter-samples-include "S7,S15" > grenedalf.log
 
-#$GRENEDALF frequency --pileup-file $DATA --omit-na-windows --sample-name-prefix S > grenedalf-fst.log
+#$GRENEDALF frequency --pileup-file $DATA --omit-invariants --sample-name-prefix S > grenedalf.log
+
 

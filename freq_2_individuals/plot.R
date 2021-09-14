@@ -47,7 +47,7 @@ colnames = c(
 #     Plot
 # =================================================================================================
 
-make_plots <- function(target_dir, data, cutoff){
+make_plots <- function(target_dir, data, mytitle, cutoff){
     dir.create(file.path(target_dir), showWarnings = FALSE)
 
     with_cutoff <- cutoff > 0
@@ -66,7 +66,7 @@ make_plots <- function(target_dir, data, cutoff){
         ylim(0, 1) +
         xlab("Position") +
         ylab("MAF")
-        labs(title=colnames[i])
+        labs(title=mytitle)
         #facet_wrap( ~ CHROM, ncol=1)
         #facet_wrap(vars(CHROM), ncol=1)
 
@@ -78,7 +78,7 @@ make_plots <- function(target_dir, data, cutoff){
     # so we have to set it explicitly to white here.
     # No idea why we did not need this in other plots...
     # Also, ggsave just insists on print out the size... that clutters our output.
-    suppressMessages(ggsave(paste0(target_dir, colnames[i],"-dot.png"), bg="white", width=16, height=12))
+    suppressMessages(ggsave(paste0(target_dir, mytitle,"-dot.png"), bg="white", width=16, height=12))
 
     # -------------------------------------------------------------------------
     #     Frequency heatmap along the genome
@@ -95,13 +95,13 @@ make_plots <- function(target_dir, data, cutoff){
         ylim(0, 1) +
         xlab("Position") +
         ylab("MAF")
-        labs(title=colnames[i])
+        labs(title=mytitle)
 
     if(with_cutoff){
         myplot <- myplot + geom_hline(yintercept = cutoff, color="red")
     }
 
-    suppressMessages(ggsave(paste0(target_dir, colnames[i],"-heat.png"), bg="white", width=16, height=12))
+    suppressMessages(ggsave(paste0(target_dir, mytitle,"-heat.png"), bg="white", width=16, height=12))
 
     # -------------------------------------------------------------------------
     #     Histogram of frequencies
@@ -114,13 +114,34 @@ make_plots <- function(target_dir, data, cutoff){
         xlab("Frequency") +
         #xlim(0, 1) +
         #geom_vline( xintercept=cutoff, color="red") +
-        labs(title=colnames[i])
+        labs(title=mytitle)
 
     if(with_cutoff){
         myplot <- myplot + geom_vline( xintercept=cutoff, color="red")
     }
 
-    suppressMessages(ggsave(paste0(target_dir, colnames[i],"-hist.png"), bg="white"))
+    suppressMessages(ggsave(paste0(target_dir, mytitle,"-hist.png"), bg="white"))
+
+    # -------------------------------------------------------------------------
+    #     Histogram of frequencies, log scaled
+    # -------------------------------------------------------------------------
+
+    myplot <- ggplot(data, aes(x=FREQ)) +
+        # geom_vline( xintercept=cutoff, color="red") +
+        geom_histogram(bins=50) +
+        geom_vline( xintercept=0.5, color="gray") +
+        # coord_trans(y = "log10") +
+        scale_y_continuous(trans = "log10") +
+        xlab("Frequency") +
+        #xlim(0, 1) +
+        #geom_vline( xintercept=cutoff, color="red") +
+        labs(title=mytitle)
+
+    if(with_cutoff){
+        myplot <- myplot + geom_vline( xintercept=cutoff, color="red")
+    }
+
+    suppressMessages(ggsave(paste0(target_dir, mytitle,"-hist-log.png"), bg="white"))
 
     #data <- data[data$FREQ > cutoff, ]
 
@@ -129,9 +150,9 @@ make_plots <- function(target_dir, data, cutoff){
     #    xlab("Frequency") +
     #    xlim(0, 1) +
     #    #geom_vline( xintercept=cutoff, color="red") +
-    #    labs(title=colnames[i])
+    #    labs(title=mytitle)
 
-    #ggsave(paste0(target_dir, colnames[i],"-hist-cut.png"), bg="white")
+    #ggsave(paste0(target_dir, mytitle,"-hist-cut.png"), bg="white")
 }
 
 # =================================================================================================
@@ -161,45 +182,47 @@ for( i in 1:11 ) {
     #     All data
     # -------------------------------------------------------------------------
 
-    print(paste0("    no-cutoff: ", nrow(base)))
-    cutoff = 0
-    make_plots("no-cutoff/", base, cutoff)
+    # print(paste0("    no-cutoff: ", nrow(base)))
+    # cutoff = 0
+    # make_plots("no-cutoff/", base, colnames[i], cutoff)
 
     # -------------------------------------------------------------------------
     #     With cutoff at 0.1
     # -------------------------------------------------------------------------
 
-    # We want to ignore frequencies below a threshold
-    cutoff = 0.1
-    cpy <- base[base$FREQ > cutoff, ]
-    cpy <- na.omit(cpy)
-
-    print(paste0("    cutoff-0.1: ", nrow(cpy)))
-    make_plots("cutoff-0.1/", cpy, cutoff)
+    # # We want to ignore frequencies below a threshold
+    # cutoff = 0.1
+    # cpy <- base[base$FREQ > cutoff, ]
+    # cpy <- na.omit(cpy)
+    #
+    # print(paste0("    cutoff-0.1: ", nrow(cpy)))
+    # make_plots("cutoff-0.1/", cpy, colnames[i], cutoff)
 
     # -------------------------------------------------------------------------
     #     With coverage 100-200
     # -------------------------------------------------------------------------
 
     # We want to ignore frequencies below a threshold
-    cutoff = 0.1
+    cutoff = 0
     cpy <- base[base$COV >= 100 & base$COV <= 200, ]
     cpy <- na.omit(cpy)
 
     print(paste0("    coverage-100-200: ", nrow(cpy)))
-    make_plots("coverage-100-200/", cpy, cutoff)
+    make_plots("coverage-100-200/", cpy, colnames[i], cutoff)
 
     # -------------------------------------------------------------------------
     #     With cutoff at 0.1 and coverage 100-200
     # -------------------------------------------------------------------------
 
-    # We want to ignore frequencies below a threshold
-    cutoff = 0.1
-    cpy <- base[base$FREQ > cutoff, ]
-    cpy <- cpy[cpy$COV >= 100 & cpy$COV <= 200, ]
-    cpy <- na.omit(cpy)
-
-    print(paste0("    cutoff-0.1 coverage-100-200: ", nrow(cpy)))
-    make_plots("cutoff-0.1_coverage-100-200/", cpy, cutoff)
+    # # We want to ignore frequencies below a threshold
+    # cutoff = 0.1
+    # cpy <- base[base$FREQ > cutoff, ]
+    # cpy <- cpy[cpy$COV >= 100 & cpy$COV <= 200, ]
+    # cpy <- na.omit(cpy)
+    #
+    # print(paste0("    cutoff-0.1 coverage-100-200: ", nrow(cpy)))
+    # make_plots("cutoff-0.1_coverage-100-200/", cpy, colnames[i], cutoff)
 
 }
+
+warnings()
