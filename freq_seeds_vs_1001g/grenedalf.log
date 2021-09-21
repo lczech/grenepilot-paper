@@ -1,0 +1,56 @@
+                                         __ 
+                               |      / /   
+   ___  ___  ___  ___  ___  ___| ___ ( (    
+  |   )|   )|___)|   )|___)|   )|   )| |___ 
+  |__/ |    |__  |  / |__  |__/ |__/|| |    
+  __/                                       
+       v0.0.0 (c) 2020-2021 by Lucas Czech
+
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf frequency --pileup-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-pileups/mpileup/all-merged-units.mpileup.gz --omit-invariants --type total --sample-name-list /lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-pileups/mpileup/all-merged-units.names.txt
+Command:                           grenedalf frequency
+
+Input:
+  --pileup-file                    "/lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-pileups/mpileup/all-merged-units.mpileup.gz"
+  --quality-encoding               sanger
+  --min-phred-score                0
+  --sync-file                      
+  --vcf-file                       
+  --sample-name-list               "/lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-pileups/mpileup/all-merged-units.names.txt"
+  --sample-name-prefix
+
+Filtering:
+  --filter-region                  
+  --filter-samples-include         
+  --filter-samples-exclude
+
+Settings:
+  --type                           "total"
+  --no-coverage                    
+  --no-frequency                   
+  --no-counts                      
+  --omit-invariants                true
+
+Formatting:
+  --separator-char                 tab
+  --na-entry                       NA
+
+Output:
+  --out-dir                        .
+  --file-prefix                    
+  --file-suffix                    
+  --compress
+
+Global Options:
+  --allow-file-overwriting         
+  --verbose                        
+  --threads                        12
+  --log-file
+
+Run the following command to get the references that need to be cited:
+`grenedalf citation Czech2021-grenedalf`
+
+Started 2021-09-20 16:32:24
+
+Processed 119469972 genome positions of the input file, and thereof skipped 99218501 due to being invariant sites.
+
+Finished 2021-09-20 16:50:33
