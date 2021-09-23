@@ -5,6 +5,8 @@
 
 GRENEDALF=/Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf
 DATA="/lustre/scratch/lczech/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-merged-units.mpileup.gz"
+NAMES="/lustre/scratch/lczech/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-merged-units.names.txt"
+POOLS="/home/lczech/safedata/ath_evo/grenepilot_lucas/fst_francois_all2all/poolsizes.txt"
 
 # pool sizes (I think... this is the "number of flowers" field from the overview table...)
 #S1  1_0 56  
@@ -22,4 +24,6 @@ DATA="/lustre/scratch/lczech/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-m
 
 #$GRENEDALF fst --pileup-file $DATA --window-width 1 --omit-na-windows --pool-sizes "56,80,65,19,69,160,205,50,101,200,296,97" --sample-name-prefix S --file-suffix "-width-1" > grenedalf-fst-width-1.log
 
-$GRENEDALF fst --pileup-file $DATA --window-width 10000 --omit-na-windows --pool-sizes "56,80,65,19,69,160,205,50,101,200,296,97" --sample-name-prefix S --file-suffix "-width-10k" > grenedalf-fst-width-10k.log
+#$GRENEDALF fst --pileup-file $DATA --window-width 10000 --omit-na-windows --pool-sizes "56,80,65,19,69,160,205,50,101,200,296,97" --sample-name-list ${NAMES} --file-suffix "-width-10k" > grenedalf-fst-width-10k.log
+
+$GRENEDALF fst --pileup-file $DATA --window-width 10000 --omit-na-windows --pool-sizes ${POOLS} --sample-name-list ${NAMES} --file-suffix "-width-10k" > grenedalf-fst-width-10k.log

@@ -6,7 +6,7 @@
   __/                                       
        v0.0.0 (c) 2020-2021 by Lucas Czech
 
-Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf fst --pileup-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-merged-units.mpileup.gz --window-width 10000 --omit-na-windows --pool-sizes 56,80,65,19,69,160,205,50,101,200,296,97 --sample-name-prefix S --file-suffix -width-10k
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf fst --pileup-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-merged-units.mpileup.gz --window-width 10000 --omit-na-windows --pool-sizes /home/lczech/safedata/ath_evo/grenepilot_lucas/fst_francois_all2all/poolsizes.txt --sample-name-list /lustre/scratch/lczech/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-merged-units.names.txt --file-suffix -width-10k
 Command:                           grenedalf fst
 
 Input:
@@ -15,8 +15,8 @@ Input:
   --min-phred-score                0
   --sync-file                      
   --vcf-file                       
-  --sample-name-list               
-  --sample-name-prefix             'S'
+  --sample-name-list               "/lustre/scratch/lczech/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-merged-units.names.txt"
+  --sample-name-prefix
 
 Filtering:
   --filter-region                  
@@ -28,7 +28,7 @@ Sliding Window:
   --window-stride                  0
 
 Settings:
-  --pool-sizes                     "56,80,65,19,69,160,205,50,101,200,296,97"
+  --pool-sizes                     "/home/lczech/safedata/ath_evo/grenepilot_lucas/fst_francois_all2all/poolsizes.txt"
   --method                         conventional
   --omit-na-windows                true
   --comparand                      
@@ -54,7 +54,7 @@ Global Options:
 Run the following command to get the references that need to be cited:
 `grenedalf citation Czech2021-grenedalf Kofler2011-PoPoolation2`
 
-Started 2021-09-21 16:44:44
+Started 2021-09-22 18:14:25
 
 Computing F_ST between 66 pairs of samples.
 At chromosome 1
@@ -67,4 +67,4 @@ At chromosome chloroplast
 
 Processed 7 chromosomes with 119475346 total positions in 11958 windows with F_ST values, and skipped 11 windows without any F_ST values.
 
-Finished 2021-09-21 17:24:25
+Finished 2021-09-22 18:52:43

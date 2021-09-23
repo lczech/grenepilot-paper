@@ -34,10 +34,33 @@ data = read.table( infile, sep="\t", header=TRUE )
 #S12 3_3 97 
 
 # Turn it into the R long format, putting the previous column names into `Pair`,
-# and the values into `FST`, taking all columns with S..S as needed.
-data_long <- gather(data, Pair, FST, `S1.S2`:`S11.S12`, factor_key=TRUE)
+# and the values into `FST`, taking all columns with S..S as needed;
+# the order of the sampl names is a bit messed up, as they are sorted by replicate,
+# as in the above table, meaning that S1.S4 is the first pair, and S9.S12 the last.
+data_long <- gather(data, Pair, FST, `S1.S4`:`S9.S12`, factor_key=TRUE)
+
+#data_long <- gather(data, Pair, FST, `S1.S2`:`S11.S12`, factor_key=TRUE)
 #data_long <- gather(data, Pair, FST, `S1.S2`:`S11.S12`)
 
+# Next issue. The pair order is sometimes reversed in the column names, depending
+# on which sample name was first in the pileup file... So, instead of S2.S4, it 
+# will be S4.S2 here... We will need to find a proper solution for this at some 
+# point, but for now, we just rename the offending names... KISS
+rename_from <- c(
+    "S4.S2", "S7.S2", "S10.S2", "S4.S3", "S5.S3", "S7.S3", 
+    "S8.S3", "S10.S3", "S11.S3", "S7.S5", "S10.S5", "S7.S6", 
+    "S8.S6", "S10.S6", "S11.S6", "S10.S8", "S10.S9", "S11.S9"
+)
+rename_to <- c(
+    "S2.S4", "S2.S7", "S2.S10", "S3.S4", "S3.S5", "S3.S7", 
+    "S3.S8", "S3.S10", "S3.S11", "S5.S7", "S5.S10", "S6.S7", 
+    "S6.S8", "S6.S10", "S6.S11", "S8.S10", "S9.S10", "S9.S11"
+)
+data_long$Pair <- mapvalues(
+    data_long$Pair, 
+    from=rename_from,
+    to=rename_to
+)
 
 # Add a col with nice group names for those pairs that have nice groups.
 # That is, pairs that belong to the same timepoint get a group Tx,
@@ -68,10 +91,11 @@ group_to <- c(
     "-", "R2", "-", "-", "-", "R3", "T3", "T3", "T3"
 )
 
-data_long$Group <- mapvalues(data_long$Pair, 
-          from=group_from,
-          to=group_to
-    )
+data_long$Group <- mapvalues(
+    data_long$Pair, 
+    from=group_from,
+    to=group_to
+)
 data_long$Group <- factor(data_long$Group, levels = c("R1", "R2", "R3", "T0", "T1", "T2", "T3", "-"))
 
 # Now also let's get some nice sample names.
@@ -154,6 +178,8 @@ make_boxplot <- function( col, colnames, title, filename, width=12, height=8, gr
         data_sub <- data_long[data_long$Pair %in% colnames,]
     } else if(col == "g") {
         data_sub <- data_long[data_long$Group %in% colnames,]
+    } else {
+        data_sub <- data_long
     }
 
     if(TRUE) {
@@ -248,6 +274,9 @@ make_boxplot <- function( col, colnames, title, filename, width=12, height=8, gr
 # =============================================================================
 
 if(TRUE) {
+
+# Make a plot with all pairs, just for testing.
+make_boxplot( "-", c(), "FST between all pairs", "box-all", height=20 )
 
 # Plot just the T0 sample pairs
 smp_T0 <- c( "S1.S2", "S1.S3", "S2.S3" )
