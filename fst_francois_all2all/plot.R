@@ -92,6 +92,21 @@ data_long$Name <- sub( "S7",  "T2R1", data_long$Name )
 data_long$Name <- sub( "S8",  "T2R2", data_long$Name )
 data_long$Name <- sub( "S9",  "T2R3", data_long$Name )
 
+# Manual assignment of factors to colors, to keep it consistent across plots.
+colorscheme <- c(
+    #"R1" = "#64a1f4",
+    #"R2" = "#4a91f2",
+    #"R3" = "#3b7dd8",
+    "R1" = "#A6CB45",
+    "R2" = "#71B238",
+    "R3" = "#6A8347",
+    "T0" = "#f1c27d",
+    "T1" = "#e0ac69",
+    "T2" = "#c68642",
+    "T3" = "#8d5524",
+    "-"  = "#a7adba"
+)
+
 # =============================================================================
     print("Histogram")
 # =============================================================================
@@ -99,10 +114,12 @@ data_long$Name <- sub( "S9",  "T2R3", data_long$Name )
 if(TRUE) {
 
 # Plot with full xlim range
-ggplot(data_long, aes(x=FST)) +
+ggplot(data_long, aes(x=FST, fill=Group)) +
     geom_histogram(bins=50) +
     xlab("FST") +
     xlim(0, 1) +
+    #scale_color_manual(values=colorscheme) +
+    scale_fill_manual(values=colorscheme) +
     facet_wrap(~ Pair, ncol=6)
 
 # Need to specify white background here, for whatever reason...
@@ -110,10 +127,12 @@ ggsave("histogram-1.0.png", width=16, height=24, bg="white")
 
 
 # Plot with better xlim range
-ggplot(data_long, aes(x=FST)) +
+ggplot(data_long, aes(x=FST, fill=Group)) +
     geom_histogram(bins=50) +
     xlab("FST") +
     xlim(0, 0.18) +
+    #scale_color_manual(values=colorscheme) +
+    scale_fill_manual(values=colorscheme) +
     facet_wrap(~ Pair, ncol=6)
 
 # Need to specify white background here, for whatever reason...
@@ -186,21 +205,6 @@ make_boxplot <- function( col, colnames, title, filename, width=12, height=8, gr
 
     mean_sub <- mean(data_sub$FST, na.rm = TRUE)
 
-    # Manual assignment of factors to colors, to keep it consistent across plots.
-    colorscheme <- c(   
-        #"R1" = "#64a1f4",
-        #"R2" = "#4a91f2",
-        #"R3" = "#3b7dd8",
-        "R1" = "#A6CB45",
-        "R2" = "#71B238",
-        "R3" = "#6A8347",
-        "T0" = "#f1c27d",
-        "T1" = "#e0ac69",
-        "T2" = "#c68642",
-        "T3" = "#8d5524",
-        "-"  = "#a7adba"
-    )
-    
     # Now if we just used the above list for plotting, we'd get ALL its colors all the time...
     # So let's subset to the ones that are actually in the plot.
     # AAAALSO, we need to go through them in the order of the factor level, but then filter
