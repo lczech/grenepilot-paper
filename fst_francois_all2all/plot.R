@@ -188,16 +188,18 @@ make_boxplot <- function( col, colnames, title, filename, width=12, height=8, gr
 
     # Manual assignment of factors to colors, to keep it consistent across plots.
     colorscheme <- c(   
-        "R1" = "#64a1f4",
-        "R2" = "#4a91f2",
-        "R3" = "#3b7dd8",
+        #"R1" = "#64a1f4",
+        #"R2" = "#4a91f2",
+        #"R3" = "#3b7dd8",
+        "R1" = "#A6CB45",
+        "R2" = "#71B238",
+        "R3" = "#6A8347",
         "T0" = "#f1c27d",
         "T1" = "#e0ac69",
         "T2" = "#c68642",
         "T3" = "#8d5524",
         "-"  = "#a7adba"
     )
-    # from https://digitalsynopsis.com/design/beautiful-color-palettes-combinations-schemes/
     
     # Now if we just used the above list for plotting, we'd get ALL its colors all the time...
     # So let's subset to the ones that are actually in the plot.
