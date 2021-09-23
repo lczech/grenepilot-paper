@@ -7,8 +7,7 @@ theme_set(theme_cowplot())
 suppressMessages(library(viridis))
 
 # Input data
-infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/seed_fst_all2all/fst.csv"
-#infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/seed_fst_all2all/head.csv"
+infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/fst_seed_all2all/fst-width-10000.csv"
 data = read.table( infile, sep="\t", header=TRUE )
 #head(data)
 
@@ -35,3 +34,15 @@ ggplot(data_long, aes(x=FST)) +
 
 # Need to specify white background here, for whatever reason...
 ggsave("histogram-0.075.png", width=16, height=8, bg="white")
+
+# Make a box plot as well
+mean_sub <- mean(data_long$FST, na.rm = TRUE)
+ggplot(data_long, aes(x=Pair, y=FST)) +
+    geom_boxplot() +
+    coord_flip() +
+    scale_x_discrete(limits=rev) +
+    ylim(0.0, 0.3) +
+    geom_hline(yintercept = mean_sub, color="gray") +
+    annotate("text",  x=-Inf, y = Inf, label = paste("Mean FST:", format(mean_sub, digits=3)), vjust=-1, hjust=1, color="gray")
+
+ggsave("box-all.png", width=12, height=12, bg="white")
