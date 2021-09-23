@@ -1,0 +1,880 @@
+                                         __ 
+                               |      / /   
+   ___  ___  ___  ___  ___  ___| ___ ( (    
+  |   )|   )|___)|   )|___)|   )|   )| |___ 
+  |__/ |    |__  |  / |__  |__/ |__/|| |    
+  __/                                       
+       v0.0.0 (c) 2020-2021 by Lucas Czech
+
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf frequency --vcf-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-bcftools-c/genotyped/all.vcf.gz --type total
+Command:                           grenedalf frequency
+
+Input:
+  --pileup-file                    
+  --quality-encoding               sanger
+  --min-phred-score                0
+  --sync-file                      
+  --vcf-file                       "/lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-bcftools-c/genotyped/all.vcf.gz"
+  --sample-name-list               
+  --sample-name-prefix
+
+Filtering:
+  --filter-region                  
+  --filter-samples-include         
+  --filter-samples-exclude
+
+Settings:
+  --type                           "total"
+  --no-coverage                    
+  --no-frequency                   
+  --no-counts
+
+Formatting:
+  --separator-char                 tab
+  --na-entry                       NA
+
+Output:
+  --out-dir                        .
+  --file-prefix                    
+  --file-suffix                    
+  --compress
+
+Global Options:
+  --allow-file-overwriting         
+  --verbose                        
+  --threads                        12
+  --log-file
+
+Run the following command to get the references that need to be cited:
+`grenedalf citation Czech2021-grenedalf`
+
+Started 2021-08-25 15:49:34
+
+Processed 1757099 genome positions of the input file.
+
+Finished 2021-08-25 15:49:58
+                                         __ 
+                               |      / /   
+   ___  ___  ___  ___  ___  ___| ___ ( (    
+  |   )|   )|___)|   )|___)|   )|   )| |___ 
+  |__/ |    |__  |  / |__  |__/ |__/|| |    
+  __/                                       
+       v0.0.0 (c) 2020-2021 by Lucas Czech
+
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf frequency --vcf-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-bcftools-c/filtered/all.vcf.gz --type total
+Command:                           grenedalf frequency
+
+Input:
+  --pileup-file                    
+  --quality-encoding               sanger
+  --min-phred-score                0
+  --sync-file                      
+  --vcf-file                       "/lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-bcftools-c/filtered/all.vcf.gz"
+  --sample-name-list               
+  --sample-name-prefix
+
+Filtering:
+  --filter-region                  
+  --filter-samples-include         
+  --filter-samples-exclude
+
+Settings:
+  --type                           "total"
+  --no-coverage                    
+  --no-frequency                   
+  --no-counts
+
+Formatting:
+  --separator-char                 tab
+  --na-entry                       NA
+
+Output:
+  --out-dir                        .
+  --file-prefix                    
+  --file-suffix                    
+  --compress
+
+Global Options:
+  --allow-file-overwriting         
+  --verbose                        
+  --threads                        12
+  --log-file
+
+Run the following command to get the references that need to be cited:
+`grenedalf citation Czech2021-grenedalf`
+
+Started 2021-08-25 15:50:03
+
+Processed 1757099 genome positions of the input file.
+
+Finished 2021-08-25 15:50:28
+                                         __ 
+                               |      / /   
+   ___  ___  ___  ___  ___  ___| ___ ( (    
+  |   )|   )|___)|   )|___)|   )|   )| |___ 
+  |__/ |    |__  |  / |__  |__/ |__/|| |    
+  __/                                       
+       v0.0.0 (c) 2020-2021 by Lucas Czech
+
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf frequency --vcf-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-bcftools-m/genotyped/all.vcf.gz --type total
+Command:                           grenedalf frequency
+
+Input:
+  --pileup-file                    
+  --quality-encoding               sanger
+  --min-phred-score                0
+  --sync-file                      
+  --vcf-file                       "/lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-bcftools-m/genotyped/all.vcf.gz"
+  --sample-name-list               
+  --sample-name-prefix
+
+Filtering:
+  --filter-region                  
+  --filter-samples-include         
+  --filter-samples-exclude
+
+Settings:
+  --type                           "total"
+  --no-coverage                    
+  --no-frequency                   
+  --no-counts
+
+Formatting:
+  --separator-char                 tab
+  --na-entry                       NA
+
+Output:
+  --out-dir                        .
+  --file-prefix                    
+  --file-suffix                    
+  --compress
+
+Global Options:
+  --allow-file-overwriting         
+  --verbose                        
+  --threads                        12
+  --log-file
+
+Run the following command to get the references that need to be cited:
+`grenedalf citation Czech2021-grenedalf`
+
+Started 2021-08-25 15:50:34
+
+Processed 2294922 genome positions of the input file.
+
+Finished 2021-08-25 15:51:01
+                                         __ 
+                               |      / /   
+   ___  ___  ___  ___  ___  ___| ___ ( (    
+  |   )|   )|___)|   )|___)|   )|   )| |___ 
+  |__/ |    |__  |  / |__  |__/ |__/|| |    
+  __/                                       
+       v0.0.0 (c) 2020-2021 by Lucas Czech
+
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf frequency --vcf-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-bcftools-m/filtered/all.vcf.gz --type total
+Command:                           grenedalf frequency
+
+Input:
+  --pileup-file                    
+  --quality-encoding               sanger
+  --min-phred-score                0
+  --sync-file                      
+  --vcf-file                       "/lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-bcftools-m/filtered/all.vcf.gz"
+  --sample-name-list               
+  --sample-name-prefix
+
+Filtering:
+  --filter-region                  
+  --filter-samples-include         
+  --filter-samples-exclude
+
+Settings:
+  --type                           "total"
+  --no-coverage                    
+  --no-frequency                   
+  --no-counts
+
+Formatting:
+  --separator-char                 tab
+  --na-entry                       NA
+
+Output:
+  --out-dir                        .
+  --file-prefix                    
+  --file-suffix                    
+  --compress
+
+Global Options:
+  --allow-file-overwriting         
+  --verbose                        
+  --threads                        12
+  --log-file
+
+Run the following command to get the references that need to be cited:
+`grenedalf citation Czech2021-grenedalf`
+
+Started 2021-08-25 15:51:09
+
+Processed 2294922 genome positions of the input file.
+
+Finished 2021-08-25 15:51:36
+                                         __ 
+                               |      / /   
+   ___  ___  ___  ___  ___  ___| ___ ( (    
+  |   )|   )|___)|   )|___)|   )|   )| |___ 
+  |__/ |    |__  |  / |__  |__/ |__/|| |    
+  __/                                       
+       v0.0.0 (c) 2020-2021 by Lucas Czech
+
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf frequency --vcf-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-freebayes-kv/genotyped/all.vcf.gz --type total
+Command:                           grenedalf frequency
+
+Input:
+  --pileup-file                    
+  --quality-encoding               sanger
+  --min-phred-score                0
+  --sync-file                      
+  --vcf-file                       "/lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-freebayes-kv/genotyped/all.vcf.gz"
+  --sample-name-list               
+  --sample-name-prefix
+
+Filtering:
+  --filter-region                  
+  --filter-samples-include         
+  --filter-samples-exclude
+
+Settings:
+  --type                           "total"
+  --no-coverage                    
+  --no-frequency                   
+  --no-counts
+
+Formatting:
+  --separator-char                 tab
+  --na-entry                       NA
+
+Output:
+  --out-dir                        .
+  --file-prefix                    
+  --file-suffix                    
+  --compress
+
+Global Options:
+  --allow-file-overwriting         
+  --verbose                        
+  --threads                        12
+  --log-file
+
+Run the following command to get the references that need to be cited:
+`grenedalf citation Czech2021-grenedalf`
+
+Started 2021-08-25 15:51:44
+
+Processed 3028700 genome positions of the input file.
+
+Finished 2021-08-25 15:53:06
+                                         __ 
+                               |      / /   
+   ___  ___  ___  ___  ___  ___| ___ ( (    
+  |   )|   )|___)|   )|___)|   )|   )| |___ 
+  |__/ |    |__  |  / |__  |__/ |__/|| |    
+  __/                                       
+       v0.0.0 (c) 2020-2021 by Lucas Czech
+
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf frequency --vcf-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-freebayes-kv/filtered/all.vcf.gz --type total
+Command:                           grenedalf frequency
+
+Input:
+  --pileup-file                    
+  --quality-encoding               sanger
+  --min-phred-score                0
+  --sync-file                      
+  --vcf-file                       "/lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-freebayes-kv/filtered/all.vcf.gz"
+  --sample-name-list               
+  --sample-name-prefix
+
+Filtering:
+  --filter-region                  
+  --filter-samples-include         
+  --filter-samples-exclude
+
+Settings:
+  --type                           "total"
+  --no-coverage                    
+  --no-frequency                   
+  --no-counts
+
+Formatting:
+  --separator-char                 tab
+  --na-entry                       NA
+
+Output:
+  --out-dir                        .
+  --file-prefix                    
+  --file-suffix                    
+  --compress
+
+Global Options:
+  --allow-file-overwriting         
+  --verbose                        
+  --threads                        12
+  --log-file
+
+Run the following command to get the references that need to be cited:
+`grenedalf citation Czech2021-grenedalf`
+
+Started 2021-08-25 15:53:16
+
+Processed 3028700 genome positions of the input file.
+
+Finished 2021-08-25 15:54:21
+                                         __ 
+                               |      / /   
+   ___  ___  ___  ___  ___  ___| ___ ( (    
+  |   )|   )|___)|   )|___)|   )|   )| |___ 
+  |__/ |    |__  |  / |__  |__/ |__/|| |    
+  __/                                       
+       v0.0.0 (c) 2020-2021 by Lucas Czech
+
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf frequency --vcf-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-freebayes-nkv/genotyped/all.vcf.gz --type total
+Command:                           grenedalf frequency
+
+Input:
+  --pileup-file                    
+  --quality-encoding               sanger
+  --min-phred-score                0
+  --sync-file                      
+  --vcf-file                       "/lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-freebayes-nkv/genotyped/all.vcf.gz"
+  --sample-name-list               
+  --sample-name-prefix
+
+Filtering:
+  --filter-region                  
+  --filter-samples-include         
+  --filter-samples-exclude
+
+Settings:
+  --type                           "total"
+  --no-coverage                    
+  --no-frequency                   
+  --no-counts
+
+Formatting:
+  --separator-char                 tab
+  --na-entry                       NA
+
+Output:
+  --out-dir                        .
+  --file-prefix                    
+  --file-suffix                    
+  --compress
+
+Global Options:
+  --allow-file-overwriting         
+  --verbose                        
+  --threads                        12
+  --log-file
+
+Run the following command to get the references that need to be cited:
+`grenedalf citation Czech2021-grenedalf`
+
+Started 2021-08-25 15:54:31
+
+Processed 4209497 genome positions of the input file.
+
+Finished 2021-08-25 15:56:26
+                                         __ 
+                               |      / /   
+   ___  ___  ___  ___  ___  ___| ___ ( (    
+  |   )|   )|___)|   )|___)|   )|   )| |___ 
+  |__/ |    |__  |  / |__  |__/ |__/|| |    
+  __/                                       
+       v0.0.0 (c) 2020-2021 by Lucas Czech
+
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf frequency --vcf-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-freebayes-nkv/filtered/all.vcf.gz --type total
+Command:                           grenedalf frequency
+
+Input:
+  --pileup-file                    
+  --quality-encoding               sanger
+  --min-phred-score                0
+  --sync-file                      
+  --vcf-file                       "/lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-freebayes-nkv/filtered/all.vcf.gz"
+  --sample-name-list               
+  --sample-name-prefix
+
+Filtering:
+  --filter-region                  
+  --filter-samples-include         
+  --filter-samples-exclude
+
+Settings:
+  --type                           "total"
+  --no-coverage                    
+  --no-frequency                   
+  --no-counts
+
+Formatting:
+  --separator-char                 tab
+  --na-entry                       NA
+
+Output:
+  --out-dir                        .
+  --file-prefix                    
+  --file-suffix                    
+  --compress
+
+Global Options:
+  --allow-file-overwriting         
+  --verbose                        
+  --threads                        12
+  --log-file
+
+Run the following command to get the references that need to be cited:
+`grenedalf citation Czech2021-grenedalf`
+
+Started 2021-08-25 15:56:39
+
+Processed 4209497 genome positions of the input file.
+
+Finished 2021-08-25 15:58:11
+                                         __ 
+                               |      / /   
+   ___  ___  ___  ___  ___  ___| ___ ( (    
+  |   )|   )|___)|   )|___)|   )|   )| |___ 
+  |__/ |    |__  |  / |__  |__/ |__/|| |    
+  __/                                       
+       v0.0.0 (c) 2020-2021 by Lucas Czech
+
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf frequency --vcf-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-haplotypecaller-kv/genotyped/all.vcf.gz --type total
+Command:                           grenedalf frequency
+
+Input:
+  --pileup-file                    
+  --quality-encoding               sanger
+  --min-phred-score                0
+  --sync-file                      
+  --vcf-file                       "/lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-haplotypecaller-kv/genotyped/all.vcf.gz"
+  --sample-name-list               
+  --sample-name-prefix
+
+Filtering:
+  --filter-region                  
+  --filter-samples-include         
+  --filter-samples-exclude
+
+Settings:
+  --type                           "total"
+  --no-coverage                    
+  --no-frequency                   
+  --no-counts
+
+Formatting:
+  --separator-char                 tab
+  --na-entry                       NA
+
+Output:
+  --out-dir                        .
+  --file-prefix                    
+  --file-suffix                    
+  --compress
+
+Global Options:
+  --allow-file-overwriting         
+  --verbose                        
+  --threads                        12
+  --log-file
+
+Run the following command to get the references that need to be cited:
+`grenedalf citation Czech2021-grenedalf`
+
+Started 2021-08-25 15:58:25
+
+Processed 2038099 genome positions of the input file.
+
+Finished 2021-08-25 15:58:57
+                                         __ 
+                               |      / /   
+   ___  ___  ___  ___  ___  ___| ___ ( (    
+  |   )|   )|___)|   )|___)|   )|   )| |___ 
+  |__/ |    |__  |  / |__  |__/ |__/|| |    
+  __/                                       
+       v0.0.0 (c) 2020-2021 by Lucas Czech
+
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf frequency --vcf-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-haplotypecaller-kv/filtered/all.vcf.gz --type total
+Command:                           grenedalf frequency
+
+Input:
+  --pileup-file                    
+  --quality-encoding               sanger
+  --min-phred-score                0
+  --sync-file                      
+  --vcf-file                       "/lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-haplotypecaller-kv/filtered/all.vcf.gz"
+  --sample-name-list               
+  --sample-name-prefix
+
+Filtering:
+  --filter-region                  
+  --filter-samples-include         
+  --filter-samples-exclude
+
+Settings:
+  --type                           "total"
+  --no-coverage                    
+  --no-frequency                   
+  --no-counts
+
+Formatting:
+  --separator-char                 tab
+  --na-entry                       NA
+
+Output:
+  --out-dir                        .
+  --file-prefix                    
+  --file-suffix                    
+  --compress
+
+Global Options:
+  --allow-file-overwriting         
+  --verbose                        
+  --threads                        12
+  --log-file
+
+Run the following command to get the references that need to be cited:
+`grenedalf citation Czech2021-grenedalf`
+
+Started 2021-08-25 15:59:03
+
+Processed 2038099 genome positions of the input file.
+
+Finished 2021-08-25 15:59:35
+                                         __ 
+                               |      / /   
+   ___  ___  ___  ___  ___  ___| ___ ( (    
+  |   )|   )|___)|   )|___)|   )|   )| |___ 
+  |__/ |    |__  |  / |__  |__/ |__/|| |    
+  __/                                       
+       v0.0.0 (c) 2020-2021 by Lucas Czech
+
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf frequency --vcf-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-haplotypecaller-nkv/genotyped/all.vcf.gz --type total
+Command:                           grenedalf frequency
+
+Input:
+  --pileup-file                    
+  --quality-encoding               sanger
+  --min-phred-score                0
+  --sync-file                      
+  --vcf-file                       "/lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-haplotypecaller-nkv/genotyped/all.vcf.gz"
+  --sample-name-list               
+  --sample-name-prefix
+
+Filtering:
+  --filter-region                  
+  --filter-samples-include         
+  --filter-samples-exclude
+
+Settings:
+  --type                           "total"
+  --no-coverage                    
+  --no-frequency                   
+  --no-counts
+
+Formatting:
+  --separator-char                 tab
+  --na-entry                       NA
+
+Output:
+  --out-dir                        .
+  --file-prefix                    
+  --file-suffix                    
+  --compress
+
+Global Options:
+  --allow-file-overwriting         
+  --verbose                        
+  --threads                        12
+  --log-file
+
+Run the following command to get the references that need to be cited:
+`grenedalf citation Czech2021-grenedalf`
+
+Started 2021-08-25 15:59:42
+
+Processed 2038126 genome positions of the input file.
+
+Finished 2021-08-25 16:00:14
+                                         __ 
+                               |      / /   
+   ___  ___  ___  ___  ___  ___| ___ ( (    
+  |   )|   )|___)|   )|___)|   )|   )| |___ 
+  |__/ |    |__  |  / |__  |__/ |__/|| |    
+  __/                                       
+       v0.0.0 (c) 2020-2021 by Lucas Czech
+
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf frequency --vcf-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-haplotypecaller-nkv/filtered/all.vcf.gz --type total
+Command:                           grenedalf frequency
+
+Input:
+  --pileup-file                    
+  --quality-encoding               sanger
+  --min-phred-score                0
+  --sync-file                      
+  --vcf-file                       "/lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-haplotypecaller-nkv/filtered/all.vcf.gz"
+  --sample-name-list               
+  --sample-name-prefix
+
+Filtering:
+  --filter-region                  
+  --filter-samples-include         
+  --filter-samples-exclude
+
+Settings:
+  --type                           "total"
+  --no-coverage                    
+  --no-frequency                   
+  --no-counts
+
+Formatting:
+  --separator-char                 tab
+  --na-entry                       NA
+
+Output:
+  --out-dir                        .
+  --file-prefix                    
+  --file-suffix                    
+  --compress
+
+Global Options:
+  --allow-file-overwriting         
+  --verbose                        
+  --threads                        12
+  --log-file
+
+Run the following command to get the references that need to be cited:
+`grenedalf citation Czech2021-grenedalf`
+
+Started 2021-08-25 16:00:21
+
+Processed 2038126 genome positions of the input file.
+
+Finished 2021-08-25 16:00:53
+                                         __ 
+                               |      / /   
+   ___  ___  ___  ___  ___  ___| ___ ( (    
+  |   )|   )|___)|   )|___)|   )|   )| |___ 
+  |__/ |    |__  |  / |__  |__/ |__/|| |    
+  __/                                       
+       v0.0.0 (c) 2020-2021 by Lucas Czech
+
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf frequency --pileup-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-pileups/mpileup/all-individual-units.mpileup.gz --type total
+Command:                           grenedalf frequency
+
+Input:
+  --pileup-file                    "/lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-pileups/mpileup/all-individual-units.mpileup.gz"
+  --quality-encoding               sanger
+  --min-phred-score                0
+  --sync-file                      
+  --vcf-file                       
+  --sample-name-list               
+  --sample-name-prefix
+
+Filtering:
+  --filter-region                  
+  --filter-samples-include         
+  --filter-samples-exclude
+
+Settings:
+  --type                           "total"
+  --no-coverage                    
+  --no-frequency                   
+  --no-counts
+
+Formatting:
+  --separator-char                 tab
+  --na-entry                       NA
+
+Output:
+  --out-dir                        .
+  --file-prefix                    
+  --file-suffix                    
+  --compress
+
+Global Options:
+  --allow-file-overwriting         
+  --verbose                        
+  --threads                        12
+  --log-file
+
+Run the following command to get the references that need to be cited:
+`grenedalf citation Czech2021-grenedalf`
+
+Started 2021-08-25 16:02:52
+
+                                         __ 
+                               |      / /   
+   ___  ___  ___  ___  ___  ___| ___ ( (    
+  |   )|   )|___)|   )|___)|   )|   )| |___ 
+  |__/ |    |__  |  / |__  |__/ |__/|| |    
+  __/                                       
+       v0.0.0 (c) 2020-2021 by Lucas Czech
+
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf frequency --pileup-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-pileups/mpileup/all-individual-units.mpileup.gz --type total --omit-invariants
+Command:                           grenedalf frequency
+
+Input:
+  --pileup-file                    "/lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-pileups/mpileup/all-individual-units.mpileup.gz"
+  --quality-encoding               sanger
+  --min-phred-score                0
+  --sync-file                      
+  --vcf-file                       
+  --sample-name-list               
+  --sample-name-prefix
+
+Filtering:
+  --filter-region                  
+  --filter-samples-include         
+  --filter-samples-exclude
+
+Settings:
+  --type                           "total"
+  --no-coverage                    
+  --no-frequency                   
+  --no-counts                      
+  --omit-invariants                true
+
+Formatting:
+  --separator-char                 tab
+  --na-entry                       NA
+
+Output:
+  --out-dir                        .
+  --file-prefix                    
+  --file-suffix                    
+  --compress
+
+Global Options:
+  --allow-file-overwriting         
+  --verbose                        
+  --threads                        12
+  --log-file
+
+Run the following command to get the references that need to be cited:
+`grenedalf citation Czech2021-grenedalf`
+
+Started 2021-08-25 16:28:10
+
+Processed 119469972 genome positions of the input file, and thereof skipped 99218501 due to being invariant sites.
+
+Finished 2021-08-25 16:46:08
+                                         __ 
+                               |      / /   
+   ___  ___  ___  ___  ___  ___| ___ ( (    
+  |   )|   )|___)|   )|___)|   )|   )| |___ 
+  |__/ |    |__  |  / |__  |__/ |__/|| |    
+  __/                                       
+       v0.0.0 (c) 2020-2021 by Lucas Czech
+
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf frequency --pileup-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-pileups/mpileup/all-merged-samples.mpileup.gz --type total --omit-invariants
+Command:                           grenedalf frequency
+
+Input:
+  --pileup-file                    "/lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-pileups/mpileup/all-merged-samples.mpileup.gz"
+  --quality-encoding               sanger
+  --min-phred-score                0
+  --sync-file                      
+  --vcf-file                       
+  --sample-name-list               
+  --sample-name-prefix
+
+Filtering:
+  --filter-region                  
+  --filter-samples-include         
+  --filter-samples-exclude
+
+Settings:
+  --type                           "total"
+  --no-coverage                    
+  --no-frequency                   
+  --no-counts                      
+  --omit-invariants                true
+
+Formatting:
+  --separator-char                 tab
+  --na-entry                       NA
+
+Output:
+  --out-dir                        .
+  --file-prefix                    
+  --file-suffix                    
+  --compress
+
+Global Options:
+  --allow-file-overwriting         
+  --verbose                        
+  --threads                        12
+  --log-file
+
+Run the following command to get the references that need to be cited:
+`grenedalf citation Czech2021-grenedalf`
+
+Started 2021-08-25 16:47:07
+
+Processed 119469958 genome positions of the input file, and thereof skipped 99263624 due to being invariant sites.
+
+Finished 2021-08-25 17:02:15
+                                         __ 
+                               |      / /   
+   ___  ___  ___  ___  ___  ___| ___ ( (    
+  |   )|   )|___)|   )|___)|   )|   )| |___ 
+  |__/ |    |__  |  / |__  |__/ |__/|| |    
+  __/                                       
+       v0.0.0 (c) 2020-2021 by Lucas Czech
+
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf frequency --pileup-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-pileups/mpileup/all-merged-units.mpileup.gz --type total --omit-invariants
+Command:                           grenedalf frequency
+
+Input:
+  --pileup-file                    "/lustre/scratch/lczech/grenepipe-runs/ath-evo-seeds-pileups/mpileup/all-merged-units.mpileup.gz"
+  --quality-encoding               sanger
+  --min-phred-score                0
+  --sync-file                      
+  --vcf-file                       
+  --sample-name-list               
+  --sample-name-prefix
+
+Filtering:
+  --filter-region                  
+  --filter-samples-include         
+  --filter-samples-exclude
+
+Settings:
+  --type                           "total"
+  --no-coverage                    
+  --no-frequency                   
+  --no-counts                      
+  --omit-invariants                true
+
+Formatting:
+  --separator-char                 tab
+  --na-entry                       NA
+
+Output:
+  --out-dir                        .
+  --file-prefix                    
+  --file-suffix                    
+  --compress
+
+Global Options:
+  --allow-file-overwriting         
+  --verbose                        
+  --threads                        12
+  --log-file
+
+Run the following command to get the references that need to be cited:
+`grenedalf citation Czech2021-grenedalf`
+
+Started 2021-08-25 17:03:11
+
+Processed 119469972 genome positions of the input file, and thereof skipped 99218501 due to being invariant sites.
+
+Finished 2021-08-25 17:21:27

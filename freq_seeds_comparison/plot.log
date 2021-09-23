@@ -1,0 +1,108 @@
+[1] "Reading tables"
+[1] "At: bcftools-c-filtered"
+[1] "    all: 1734848"
+[1] "    coverage-50-100: 39523"
+[1] "    coverage-100-250: 226315"
+[1] "    coverage-250-500: 1405043"
+[1] "At: bcftools-m-filtered"
+[1] "    all: 2246030"
+[1] "    coverage-50-100: 63564"
+[1] "    coverage-100-250: 329515"
+[1] "    coverage-250-500: 1764478"
+[1] "At: freebayes-kv-filtered"
+[1] "    all: 2989244"
+[1] "    coverage-50-100: 41772"
+[1] "    coverage-100-250: 346746"
+[1] "    coverage-250-500: 2459644"
+[1] "At: freebayes-nkv-filtered"
+[1] "    all: 3763847"
+[1] "    coverage-50-100: 69451"
+[1] "    coverage-100-250: 507375"
+[1] "    coverage-250-500: 2864808"
+[1] "At: haplotypecaller-kv-filtered"
+[1] "    all: 1999003"
+[1] "    coverage-50-100: 31170"
+[1] "    coverage-100-250: 240186"
+[1] "    coverage-250-500: 1645098"
+[1] "At: haplotypecaller-nkv-filtered"
+[1] "    all: 1999029"
+[1] "    coverage-50-100: 31171"
+[1] "    coverage-100-250: 240197"
+[1] "    coverage-250-500: 1645094"
+Warning messages:
+1: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+2: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+3: Transformation introduced infinite values in continuous y-axis
+4: Removed 4 rows containing missing values (geom_bar).
+5: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+6: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+7: Transformation introduced infinite values in continuous y-axis
+8: Removed 8 rows containing missing values (geom_bar).
+9: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+10: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+11: Transformation introduced infinite values in continuous y-axis
+12: Removed 5 rows containing missing values (geom_bar).
+13: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+14: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+15: Transformation introduced infinite values in continuous y-axis
+16: Removed 3 rows containing missing values (geom_bar).
+17: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+18: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+19: Transformation introduced infinite values in continuous y-axis
+20: Removed 2 rows containing missing values (geom_bar).
+21: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+22: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+23: Transformation introduced infinite values in continuous y-axis
+24: Removed 7 rows containing missing values (geom_bar).
+25: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+26: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+27: Transformation introduced infinite values in continuous y-axis
+28: Removed 4 rows containing missing values (geom_bar).
+29: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+30: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+31: Transformation introduced infinite values in continuous y-axis
+32: Removed 3 rows containing missing values (geom_bar).
+33: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+34: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+35: Transformation introduced infinite values in continuous y-axis
+36: Removed 2 rows containing missing values (geom_bar).
+37: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+38: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+39: Transformation introduced infinite values in continuous y-axis
+40: Removed 3 rows containing missing values (geom_bar).
+41: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+42: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+43: Transformation introduced infinite values in continuous y-axis
+44: Removed 4 rows containing missing values (geom_bar).
+45: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+46: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+47: Transformation introduced infinite values in continuous y-axis
+48: Removed 2 rows containing missing values (geom_bar).
+49: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`
+50: Computation failed in `stat_binhex()`:
+The `hexbin` package is required for `stat_binhex()`

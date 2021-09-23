@@ -20,6 +20,15 @@ vcf_freq_files <- c(
 )
 pileup_freq_file = "frequency-ath-evo-seeds-pileups-all-merged-samples.csv"
 
+plot_titles <- c(
+    "BCFtools (--consensus-caller)",
+    "BCFtools (--multiallelic-caller)",
+    "freebayes (with known variants)",
+    "freebayes (without known variants)",
+    "GATK HaplotypeCaller (with known variants)",
+    "GATK HaplotypeCaller (without known variants)"
+)
+
 # Read all vcf freq tables.
 # We do it all at once, in preparation for later, when we probably want to make
 # one big facet plot with all of them in one figure.
@@ -41,7 +50,7 @@ pileup_freq_data <- read.table(pileup_freq_file, sep="\t", header=TRUE)
 #     Plot
 # =================================================================================================
 
-make_plots <- function(target_dir, joined_data, mytitle){
+make_plots <- function(target_dir, basename, joined_data, mytitle){
     dir.create(file.path(target_dir), showWarnings = FALSE)
 
     # Get standard deviation of the diff
@@ -62,19 +71,19 @@ make_plots <- function(target_dir, joined_data, mytitle){
         ggplot(joined_data, aes(x=TOTAL.FREQ.x, y=TOTAL.FREQ.y)) +
             geom_vline( xintercept=0, color="gray") +
             geom_hline( yintercept=0, color="gray") +
-            geom_point(alpha = 1/80, size=0.1) +
+            geom_point(alpha = 1/25, size=0.2) +
             # geom_point(alpha = 1/100, size=ds) +
             #geom_point(alpha = 1/100, size=ds, aes(color=COV)) +
             #scale_color_viridis(trans = "log10", direction=-1) +
             geom_abline(slope = 1, colour="blue") +
             coord_fixed() +
-            xlab("Pileup MAF") +
-            ylab("VCF MAF") +
+            xlab("Pileup Frequency") +
+            ylab("VCF Frequency") +
             labs(title=mytitle) +
             annotate("text", x = 0.02, y = Inf, hjust = 0, vjust=1, label = paste0("SD: ", format(stddev, digits=3)))
 
         # We save different sizes, as the pixel density changes.
-        suppressMessages(ggsave(paste0(target_dir, mytitle, "-scatter.png"), bg="white"))
+        suppressMessages(ggsave(paste0(target_dir, basename, "-scatter.png"), bg="white"))
         #ggsave(paste(f,"-large.png", sep=""), width=16, height=15)
 
         # -------------------------------------------------------------------------
@@ -91,11 +100,11 @@ make_plots <- function(target_dir, joined_data, mytitle){
             scale_fill_viridis() +
             scale_color_viridis() +
             coord_fixed() +
-            xlab("Pileup MAF") +
-            ylab("VCF MAF") +
+            xlab("Pileup Frequency") +
+            ylab("VCF Frequency") +
             labs(title=mytitle)
 
-        suppressMessages(ggsave(paste0(target_dir, mytitle,"-hex.png"), width=9, height=7, bg="white"))
+        suppressMessages(ggsave(paste0(target_dir, basename,"-hex.png"), width=9, height=7, bg="white"))
 
         ggplot(joined_data, aes(x=TOTAL.FREQ.x, y=TOTAL.FREQ.y)) +
             geom_hex(aes(colour = ..count..), bins=50) +
@@ -103,11 +112,11 @@ make_plots <- function(target_dir, joined_data, mytitle){
             scale_fill_viridis(trans = "log10") +
             scale_color_viridis(trans="log10") +
             coord_fixed() +
-            xlab("Pileup MAF") +
-            ylab("VCF MAF") +
+            xlab("Pileup Frequency") +
+            ylab("VCF Frequency") +
             labs(title=mytitle)
 
-        suppressMessages(ggsave(paste0(target_dir, mytitle,"-hex-log.png"), width=9, height=7, bg="white"))
+        suppressMessages(ggsave(paste0(target_dir, basename,"-hex-log.png"), width=9, height=7, bg="white"))
 
     }
 
@@ -120,21 +129,21 @@ make_plots <- function(target_dir, joined_data, mytitle){
         # Histogram of diff between the two
         ggplot(joined_data, aes(x=DIFF)) +
             geom_histogram(bins=50) +
-            xlab("Frequency Diff") +
+            xlab("Frequency Difference") +
             labs(title=mytitle) +
             annotate("text", x = -1, y = Inf, hjust = 0, vjust=1, label = paste0("SD: ", format(stddev, digits=3)))
 
-        suppressMessages(ggsave(paste0(target_dir, mytitle,"-hist.png"), bg="white"))
+        suppressMessages(ggsave(paste0(target_dir, basename,"-hist.png"), bg="white"))
 
         # Histogram of diff between the two, log scaled
         ggplot(joined_data, aes(x=DIFF)) +
             geom_histogram(bins=50) +
             scale_y_continuous(trans = "log10") +
-            xlab("Frequency Diff") +
+            xlab("Frequency Difference") +
             labs(title=mytitle) +
             annotate("text", x = -1, y = Inf, hjust = 0, vjust=1, label = paste0("SD: ", format(stddev, digits=3)))
 
-        suppressMessages(ggsave(paste0(target_dir, mytitle,"-hist-log.png"), bg="white"))
+        suppressMessages(ggsave(paste0(target_dir, basename,"-hist-log.png"), bg="white"))
 
     }
 
@@ -150,7 +159,26 @@ make_plots <- function(target_dir, joined_data, mytitle){
             xlab("Frequency") +
             labs(title=mytitle)
 
-        suppressMessages(ggsave(paste0(target_dir, mytitle,"-freq-hist.png"), bg="white"))
+        suppressMessages(ggsave(paste0(target_dir, basename,"-freq-hist.png"), bg="white"))
+    }
+
+    if(TRUE) {
+
+        # -------------------------------------------------------------------------
+        #     Histogram of seed read coverage
+        # -------------------------------------------------------------------------
+
+        # get the data that is not larger than 1000 cov, as we do not want these.
+        cov_1000 <- joined_data[joined_data$SEED.COV <= 1000, ]
+
+        # Histogram of frequencies
+        ggplot(cov_1000, aes(x=SEED.COV)) +
+            geom_histogram(bins=50) +
+            xlab("Coverage") +
+            labs(title=mytitle)
+
+        suppressMessages(ggsave(paste0(target_dir, basename,"-cov-hist.png"), bg="white"))
+
     }
 }
 
@@ -185,23 +213,31 @@ for (f in vcf_freq_files) {
     # -------------------------------------------------------------------------
 
     print(paste0("    all: ", nrow(joined_data)))
-    make_plots("all/", joined_data, f)
+    make_plots("all/", f, joined_data, plot_titles[i])
 
     # -------------------------------------------------------------------------
-    #     COV >= 50
+    #     COV >= 50 & COV <= 100
     # -------------------------------------------------------------------------
 
-    joined_data <- joined_data[joined_data$SEED.COV >= 50, ]
-    print(paste0("    coverage-50: ", nrow(joined_data)))
-    make_plots("coverage-50/", joined_data, f)
+    joined_data_50_100 <- joined_data[joined_data$SEED.COV >= 50 & joined_data$SEED.COV <= 100, ]
+    print(paste0("    coverage-50-100: ", nrow(joined_data_50_100)))
+    make_plots("coverage-50-100/", f, joined_data_50_100, plot_titles[i])
 
     # -------------------------------------------------------------------------
-    #     COV >= 100 & COV <= 200
+    #     COV >= 100 & COV <= 250
     # -------------------------------------------------------------------------
 
-    joined_data <- joined_data[joined_data$SEED.COV >= 100 & joined_data$SEED.COV <= 200, ]
-    print(paste0("    coverage-100-200: ", nrow(joined_data)))
-    make_plots("coverage-100-200/", joined_data, f)
+    joined_data_100_250 <- joined_data[joined_data$SEED.COV >= 100 & joined_data$SEED.COV <= 250, ]
+    print(paste0("    coverage-100-250: ", nrow(joined_data_100_250)))
+    make_plots("coverage-100-250/", f, joined_data_100_250, plot_titles[i])
+
+    # -------------------------------------------------------------------------
+    #     COV >= 250 & COV <= 500
+    # -------------------------------------------------------------------------
+
+    joined_data_250_500 <- joined_data[joined_data$SEED.COV >= 250 & joined_data$SEED.COV <= 500, ]
+    print(paste0("    coverage-250-500: ", nrow(joined_data_250_500)))
+    make_plots("coverage-250-500/", f, joined_data_250_500, plot_titles[i])
 
     i <- i+1
 }
