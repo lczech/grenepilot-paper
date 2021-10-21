@@ -52,6 +52,8 @@ make_plots <- function(target_dir, data, mytitle, cutoff){
 
     with_cutoff <- cutoff > 0
 
+    if(FALSE) {
+
     # -------------------------------------------------------------------------
     #     Dot plot along the genome
     # -------------------------------------------------------------------------
@@ -153,6 +155,24 @@ make_plots <- function(target_dir, data, mytitle, cutoff){
     #    labs(title=mytitle)
 
     #ggsave(paste0(target_dir, mytitle,"-hist-cut.png"), bg="white")
+
+    }
+
+    # -------------------------------------------------------------------------
+    #     Histogram of Coverages
+    # -------------------------------------------------------------------------
+
+    # get the data that is not larger than 1000 cov, as we do not want these.
+    cov_1000 <- data[data$COV <= 1000, ]
+
+    # Histogram of coverages
+    ggplot(cov_1000, aes(x=COV)) +
+        geom_histogram(bins=50) +
+        xlab("Coverage") +
+        labs(title=mytitle)
+
+    suppressMessages(ggsave(paste0(target_dir, mytitle,"-cov-hist.png"), bg="white"))
+
 }
 
 # =================================================================================================
@@ -182,9 +202,9 @@ for( i in 1:11 ) {
     #     All data
     # -------------------------------------------------------------------------
 
-    # print(paste0("    no-cutoff: ", nrow(base)))
-    # cutoff = 0
-    # make_plots("no-cutoff/", base, colnames[i], cutoff)
+    print(paste0("    no-cutoff: ", nrow(base)))
+    cutoff = 0
+    make_plots("no-cutoff/", base, colnames[i], cutoff)
 
     # -------------------------------------------------------------------------
     #     With cutoff at 0.1
@@ -203,12 +223,12 @@ for( i in 1:11 ) {
     # -------------------------------------------------------------------------
 
     # We want to ignore frequencies below a threshold
-    cutoff = 0
-    cpy <- base[base$COV >= 100 & base$COV <= 200, ]
-    cpy <- na.omit(cpy)
+    # cutoff = 0
+    # cpy <- base[base$COV >= 100 & base$COV <= 200, ]
+    # cpy <- na.omit(cpy)
 
-    print(paste0("    coverage-100-200: ", nrow(cpy)))
-    make_plots("coverage-100-200/", cpy, colnames[i], cutoff)
+    # print(paste0("    coverage-100-200: ", nrow(cpy)))
+    # make_plots("coverage-100-200/", cpy, colnames[i], cutoff)
 
     # -------------------------------------------------------------------------
     #     With cutoff at 0.1 and coverage 100-200
