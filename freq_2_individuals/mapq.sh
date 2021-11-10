@@ -17,7 +17,7 @@ OUTDIR="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/fre
 #done
 
 # Merge the files first, in the same order as the list in all-merged-units.names.txt
-cd $DATADIR
+#cd $DATADIR
 #samtools merge -O BAM all-merged.bam \
 #    COL0L1B_CKDL210018053-1a-AK10689-AK9012_HGKVHCCX2_L1-1.sorted.bam \
 #    COLRUM_POOL1_CKDL210018053-1a-AK34070-AK9050_HGKVHCCX2_L1-1.sorted.bam \
@@ -47,33 +47,117 @@ cd $DATADIR
 #    TWOFH5_CKDL210018053-1a-AK34069-AK26896_HGKVHCCX2_L1-1.sorted.bam | \
 #    gzip > ${OUTDIR}/all-merged-units-q60-Q15.mpileup.gz
 
-echo "COLRUM_POOL1-q20"
-samtools mpileup -q 20 COLRUM_POOL1_CKDL210018053-1a-AK34070-AK9050_HGKVHCCX2_L1-1.sorted.bam | \
-    gzip > ${OUTDIR}/COLRUM_POOL1-q20.mpileup.gz
 
-echo "COLRUM_POOL1-q40"
-samtools mpileup -q 40 COLRUM_POOL1_CKDL210018053-1a-AK34070-AK9050_HGKVHCCX2_L1-1.sorted.bam | \
-    gzip > ${OUTDIR}/COLRUM_POOL1-q40.mpileup.gz
+SETS=()
+NAMS=()
 
-echo "COLRUM_POOL1-q20-fF"
-samtools mpileup -q 20 -f 0x002 -F 004 -F 0x008 COLRUM_POOL1_CKDL210018053-1a-AK34070-AK9050_HGKVHCCX2_L1-1.sorted.bam | \
-    gzip > ${OUTDIR}/COLRUM_POOL1-q20-fF.mpileup.gz
+SETS+=("-q 0")
+SETS+=("-q 20")
+SETS+=("-q 40")
+SETS+=("-q 60")
+SETS+=("-q 0 --rf 0x002 --ff 0x004 --ff 0x008")
+SETS+=("-q 20 --rf 0x002 --ff 0x004 --ff 0x008")
+SETS+=("-q 40 --rf 0x002 --ff 0x004 --ff 0x008")
+SETS+=("-q 60 --rf 0x002 --ff 0x004 --ff 0x008")
+SETS+=("-Q 30 -q 0")
+SETS+=("-Q 30 -q 20")
+SETS+=("-Q 30 -q 40")
+SETS+=("-Q 30 -q 60")
+SETS+=("-Q 30 -q 0 --rf 0x002 --ff 0x004 --ff 0x008")
+SETS+=("-Q 30 -q 20 --rf 0x002 --ff 0x004 --ff 0x008")
+SETS+=("-Q 30 -q 40 --rf 0x002 --ff 0x004 --ff 0x008")
+SETS+=("-Q 30 -q 60 --rf 0x002 --ff 0x004 --ff 0x008")
 
-echo "COLRUM_POOL1-q40-fF"
-samtools mpileup -q 40 -f 0x002 -F 004 -F 0x008 COLRUM_POOL1_CKDL210018053-1a-AK34070-AK9050_HGKVHCCX2_L1-1.sorted.bam | \
-    gzip > ${OUTDIR}/COLRUM_POOL1-q40-fF.mpileup.gz
+NAMS+=("q0")
+NAMS+=("q20")
+NAMS+=("q40")
+NAMS+=("q60")
+NAMS+=("q0-f")
+NAMS+=("q20-f")
+NAMS+=("q40-f")
+NAMS+=("q60-f")
+NAMS+=("Q30-q0")
+NAMS+=("Q30-q20")
+NAMS+=("Q30-q40")
+NAMS+=("Q30-q60")
+NAMS+=("Q30-q0-f")
+NAMS+=("Q30-q20-f")
+NAMS+=("Q30-q40-f")
+NAMS+=("Q30-q60-f")
 
-cd ${OUTDIR}
+BAMFILE="COLRUM_POOL1_CKDL210018053-1a-AK34070-AK9050_HGKVHCCX2_L1-1.sorted.bam"
+REFFILE="/lustre/scratch/lczech/grenepipe-runs/ath-evo-ref/TAIR10_chr_all.fa"
 
-echo "COLRUM_POOL1-q20"
-$GRENEDALF frequency --pileup-file "COLRUM_POOL1-q20.mpileup.gz" --omit-invariants --file-suffix "-q20" >> grenedalf.log
+run_tools() {
 
-echo "COLRUM_POOL1-q40"
-$GRENEDALF frequency --pileup-file "COLRUM_POOL1-q40.mpileup.gz" --omit-invariants --file-suffix "-q40" >> grenedalf.log
+    {
+    INDEX=$1
 
-echo "COLRUM_POOL1-q20-fF"
-$GRENEDALF frequency --pileup-file "COLRUM_POOL1-q20-fF.mpileup.gz" --omit-invariants --file-suffix "-q20-fF" >> grenedalf.log
+    SETTINGS=${SETS[${INDEX}]}
+    NAME=${NAMS[${INDEX}]}
 
-echo "COLRUM_POOL1-q40-fF"
-$GRENEDALF frequency --pileup-file "COLRUM_POOL1-q40-fF.mpileup.gz" --omit-invariants --file-suffix "-q40-fF" >> grenedalf.log
+    echo "${NAME} with ${SETTINGS}"
+
+    echo "samtools: `date`"
+    cd ${DATADIR}
+    samtools mpileup ${SETTINGS} --fasta-ref ${REFFILE} \
+        ${BAMFILE} | \
+        gzip > ${OUTDIR}/COLRUM_POOL1-${NAME}.mpileup.gz
+
+    echo "grenedalf: `date`"
+    cd ${OUTDIR}
+    $GRENEDALF frequency \
+        --pileup-file "COLRUM_POOL1-${NAME}.mpileup.gz" \
+        --omit-invariants \
+        --file-suffix "-${NAME}" \
+        --sample-name-prefix "S" \
+        >> grenedalf-${NAME}.log
+
+    } &
+}
+
+export -f run_tools
+
+# Waaaaaahh memex does not have `parallel`, such a basic tool...
+# So, use a different approach instead. Ugly, but gets the job done.
+#parallel run_tools ::: ${!NAMS[@]}
+for i in ${!NAMS[@]} ; do
+    echo $i
+    run_tools $i
+done
+wait
+
+
+echo "Done `date`"
+
+
+#echo "COLRUM_POOL1-q20"
+#samtools mpileup -q 20 COLRUM_POOL1_CKDL210018053-1a-AK34070-AK9050_HGKVHCCX2_L1-1.sorted.bam | \
+#    gzip > ${OUTDIR}/COLRUM_POOL1-q20.mpileup.gz
+#
+#echo "COLRUM_POOL1-q40"
+#samtools mpileup -q 40 COLRUM_POOL1_CKDL210018053-1a-AK34070-AK9050_HGKVHCCX2_L1-1.sorted.bam | \
+#    gzip > ${OUTDIR}/COLRUM_POOL1-q40.mpileup.gz
+#
+#echo "COLRUM_POOL1-q20-fF"
+#samtools mpileup -q 20 -f 0x002 -F 004 -F 0x008 COLRUM_POOL1_CKDL210018053-1a-AK34070-AK9050_HGKVHCCX2_L1-1.sorted.bam | \
+#    gzip > ${OUTDIR}/COLRUM_POOL1-q20-fF.mpileup.gz
+#
+#echo "COLRUM_POOL1-q40-fF"
+#samtools mpileup -q 40 -f 0x002 -F 004 -F 0x008 COLRUM_POOL1_CKDL210018053-1a-AK34070-AK9050_HGKVHCCX2_L1-1.sorted.bam | \
+#    gzip > ${OUTDIR}/COLRUM_POOL1-q40-fF.mpileup.gz
+#
+#cd ${OUTDIR}
+#
+#echo "COLRUM_POOL1-q20"
+#$GRENEDALF frequency --pileup-file "COLRUM_POOL1-q20.mpileup.gz" --omit-invariants --file-suffix "-q20" --sample-name-prefix "S" >> grenedalf.log
+#
+#echo "COLRUM_POOL1-q40"
+#$GRENEDALF frequency --pileup-file "COLRUM_POOL1-q40.mpileup.gz" --omit-invariants --file-suffix "-q40" --sample-name-prefix "S" >> grenedalf.log
+#
+#echo "COLRUM_POOL1-q20-fF"
+#$GRENEDALF frequency --pileup-file "COLRUM_POOL1-q20-fF.mpileup.gz" --omit-invariants --file-suffix "-q20-fF" --sample-name-prefix "S" >> grenedalf.log
+#
+#echo "COLRUM_POOL1-q40-fF"
+#$GRENEDALF frequency --pileup-file "COLRUM_POOL1-q40-fF.mpileup.gz" --omit-invariants --file-suffix "-q40-fF" --sample-name-prefix"S" >> grenedalf.log
 
