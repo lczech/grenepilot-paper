@@ -2,6 +2,7 @@
 library(ggplot2)
 library(cowplot)
 library(data.table)
+library(dplyr)
 #library(tidyverse)
 theme_set(theme_cowplot())
 suppressMessages(library(viridis))
@@ -139,9 +140,75 @@ make_plots <- function(target_dir, data, mytitle, cutoff = 0){
 }
 
 # =================================================================================================
+#     Filter and Plot Function
+# =================================================================================================
+
+make_filter_plots <- function(base, target_dir, prefix)
+{
+    # -------------------------------------------------------------------------
+    #     All data
+    # -------------------------------------------------------------------------
+
+    print(paste0("    no-cutoff: ", nrow(base)))
+    cutoff = 0
+    make_plots(paste0(target_dir, "-no-cutoff/"), base, prefix, cutoff)
+
+    # -------------------------------------------------------------------------
+    #     With coverage > 25
+    # -------------------------------------------------------------------------
+
+    # We want to ignore frequencies below a threshold
+    cutoff = 0
+    cpy <- base[base$COV >= 25, ]
+    cpy <- na.omit(cpy)
+
+    print(paste0("    coverage-25: ", nrow(cpy)))
+    make_plots(paste0(target_dir, "-coverage-25/"), cpy, prefix, cutoff)
+
+    # -------------------------------------------------------------------------
+    #     With cutoff at 0.1
+    # -------------------------------------------------------------------------
+
+    # We want to ignore frequencies below a threshold
+    cutoff = 0.1
+    cpy <- base[base$FREQ > cutoff, ]
+    cpy <- na.omit(cpy)
+
+    print(paste0("    cutoff-0.1: ", nrow(cpy)))
+    make_plots(paste0(target_dir, "-cutoff-0.1/"), cpy, prefix, cutoff)
+
+    # -------------------------------------------------------------------------
+    #     With coverage 100-200
+    # -------------------------------------------------------------------------
+
+    # We want to ignore frequencies below a threshold
+    cutoff = 0
+    cpy <- base[base$COV >= 100 & base$COV <= 200, ]
+    cpy <- na.omit(cpy)
+
+    print(paste0("    coverage-100-200: ", nrow(cpy)))
+    make_plots(paste0(target_dir, "-coverage-100-200/"), cpy, prefix, cutoff)
+
+    # -------------------------------------------------------------------------
+    #     With cutoff at 0.1 and coverage 100-200
+    # -------------------------------------------------------------------------
+
+    # We want to ignore frequencies below a threshold
+    cutoff = 0.1
+    cpy <- base[base$FREQ > cutoff, ]
+    cpy <- cpy[cpy$COV >= 100 & cpy$COV <= 200, ]
+    cpy <- na.omit(cpy)
+
+    print(paste0("    cutoff-0.1 coverage-100-200: ", nrow(cpy)))
+    make_plots(paste0(target_dir, "-cutoff-0.1_coverage-100-200/"), cpy, prefix, cutoff)
+}
+
+# =================================================================================================
 #     Main loop over input files
 # =================================================================================================
 
+# List of all quality filtering frequency talbles that we made with grenedalf,
+# using all combinations of filter settings with samtools mpileup
 filenames = c(
     "q0",
     "q20",
@@ -161,72 +228,39 @@ filenames = c(
     "Q30-q60-f"
 )
 
+# List of bona fide snps
+bim <- fread( "/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/1001g/515g.bim" , sep=" ", header=FALSE )
+colnames(bim)[which(names(bim) == "V2")] <- "SNP"
+#print(head(bim))
+
+# Loop through all filterings, and make plots, with, without, and anti bona fide snps
 for( i in 1:16 ) {
-    
+   
+    # Load data 
     print(paste0("At ",i, ": ", filenames[i])) 
-    prefix <- filenames[i]
     base <- fread( paste0( "data/frequency-", filenames[i], ".csv" ), sep="\t", header=TRUE )
 
+    # Basic setup of the data
+    base$SNP <- paste0(base$CHROM, "_", base$POS)
     base$FREQ <- 1.0 - base[, "S1.FREQ"]
     colnames(base)[which(names(base) == "S1.COV")] <- "COV"
     base <- base[base$CHROM != "chloroplast" & base$CHROM != "mitochondria", ]
-
-    # -------------------------------------------------------------------------
-    #     All data
-    # -------------------------------------------------------------------------
-
-    print(paste0("    no-cutoff: ", nrow(base)))
-    cutoff = 0
-    make_plots(paste0(prefix, "-no-cutoff/"), base, prefix, cutoff)
-
-    # -------------------------------------------------------------------------
-    #     With coverage > 25
-    # -------------------------------------------------------------------------
-
-    # We want to ignore frequencies below a threshold
-    cutoff = 0
-    cpy <- base[base$COV >= 25, ]
-    cpy <- na.omit(cpy)
-
-    print(paste0("    coverage-25: ", nrow(cpy)))
-    make_plots(paste0(prefix, "-coverage-25/"), cpy, prefix, cutoff)
-
-    # -------------------------------------------------------------------------
-    #     With cutoff at 0.1
-    # -------------------------------------------------------------------------
-
-    # We want to ignore frequencies below a threshold
-    cutoff = 0.1
-    cpy <- base[base$FREQ > cutoff, ]
-    cpy <- na.omit(cpy)
     
-    print(paste0("    cutoff-0.1: ", nrow(cpy)))
-    make_plots(paste0(prefix, "-cutoff-0.1/"), cpy, prefix, cutoff)
+    # Plot all
+    print("  all")
+    make_filter_plots(base, paste0("mapq-all/", filenames[i]), "COLRUM_POOL1")
 
-    # -------------------------------------------------------------------------
-    #     With coverage 100-200
-    # -------------------------------------------------------------------------
+    # Filter only bona fide snps
+    print("  bf")
+    bf <- inner_join(base, bim, by="SNP")
+    #print(head(bf))
+    make_filter_plots(bf, paste0("mapq-bf/", filenames[i]), "COLRUM_POOL1")
 
-    # We want to ignore frequencies below a threshold
-    cutoff = 0
-    cpy <- base[base$COV >= 100 & base$COV <= 200, ]
-    cpy <- na.omit(cpy)
-
-    print(paste0("    coverage-100-200: ", nrow(cpy)))
-    make_plots(paste0(prefix, "-coverage-100-200/"), cpy, prefix, cutoff)
-
-    # -------------------------------------------------------------------------
-    #     With cutoff at 0.1 and coverage 100-200
-    # -------------------------------------------------------------------------
-
-    # We want to ignore frequencies below a threshold
-    cutoff = 0.1
-    cpy <- base[base$FREQ > cutoff, ]
-    cpy <- cpy[cpy$COV >= 100 & cpy$COV <= 200, ]
-    cpy <- na.omit(cpy)
-    
-    print(paste0("    cutoff-0.1 coverage-100-200: ", nrow(cpy)))
-    make_plots(paste0(prefix, "-cutoff-0.1_coverage-100-200/"), cpy, prefix, cutoff)
+    # Filter all but bona fide snps
+    print("  aj")
+    aj <- anti_join(base, bim, by="SNP")
+    #print(head(aj))
+    make_filter_plots(aj, paste0("mapq-aj/", filenames[i]), "COLRUM_POOL1")
 
 }
 
