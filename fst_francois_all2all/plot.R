@@ -15,7 +15,8 @@ library("wesanderson")
 # =============================================================================
 
 # Input data
-infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/fst_francois_all2all/fst-width-10k.csv"
+#infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/fst_francois_all2all/fst-width-10k.csv"
+infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/fst_francois_all2all/fst-width-1.csv"
 #infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/fst_francois_all2all/head.csv"
 data = read.table( infile, sep="\t", header=TRUE )
 #head(data)

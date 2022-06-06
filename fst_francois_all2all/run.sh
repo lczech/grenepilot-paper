@@ -22,8 +22,8 @@ POOLS="/home/lczech/safedata/ath_evo/grenepilot_lucas/fst_francois_all2all/pools
 #S9  3_2 296 
 #S12 3_3 97  
 
-#$GRENEDALF fst --pileup-file $DATA --window-width 1 --omit-na-windows --pool-sizes "56,80,65,19,69,160,205,50,101,200,296,97" --sample-name-prefix S --file-suffix "-width-1" > grenedalf-fst-width-1.log
+$GRENEDALF fst --pileup-file $DATA --window-width 1 --omit-na-windows --pool-sizes "56,80,65,19,69,160,205,50,101,200,296,97" --sample-name-list ${NAMES} --file-suffix "-width-1" > grenedalf-fst-width-1.log
 
 #$GRENEDALF fst --pileup-file $DATA --window-width 10000 --omit-na-windows --pool-sizes "56,80,65,19,69,160,205,50,101,200,296,97" --sample-name-list ${NAMES} --file-suffix "-width-10k" > grenedalf-fst-width-10k.log
 
-$GRENEDALF fst --pileup-file $DATA --window-width 10000 --omit-na-windows --pool-sizes ${POOLS} --sample-name-list ${NAMES} --file-suffix "-width-10k" > grenedalf-fst-width-10k.log
+#$GRENEDALF fst --pileup-file $DATA --window-width 10000 --omit-na-windows --pool-sizes ${POOLS} --sample-name-list ${NAMES} --file-suffix "-width-10k" > grenedalf-fst-width-10k.log
