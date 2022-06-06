@@ -1,0 +1,22 @@
+[1] "Reading table"
+[1] "At 1: Flowerpool5B"
+[1] "    no-cutoff: 6540826"
+[1] "    cutoff-0.1: 2067036"
+[1] "    coverage-100-200: 136224"
+[1] "    cutoff-0.1 coverage-100-200: 12001"
+[1] "At 2: Plantpool5x"
+[1] "    no-cutoff: 6540826"
+[1] "    cutoff-0.1: 2029532"
+[1] "    coverage-100-200: 83363"
+[1] "    cutoff-0.1 coverage-100-200: 4009"
+Warning messages:
+1: Transformation introduced infinite values in discrete y-axis
+2: Removed 2494 rows containing missing values (geom_point).
+3: Removed 2494 rows containing non-finite values (stat_bin2d).
+4: Removed 2494 rows containing non-finite values (stat_bin).
+5: Removed 2494 rows containing non-finite values (stat_bin).
+6: Transformation introduced infinite values in discrete y-axis
+7: Removed 6552 rows containing missing values (geom_point).
+8: Removed 6552 rows containing non-finite values (stat_bin2d).
+9: Removed 6552 rows containing non-finite values (stat_bin).
+10: Removed 6552 rows containing non-finite values (stat_bin).

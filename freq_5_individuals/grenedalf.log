@@ -1,0 +1,56 @@
+                                         __ 
+                               |      / /   
+   ___  ___  ___  ___  ___  ___| ___ ( (    
+  |   )|   )|___)|   )|___)|   )|   )| |___ 
+  |__/ |    |__  |  / |__  |__/ |__/|| |    
+  __/                                       
+       v0.0.0 (c) 2020-2021 by Lucas Czech
+
+Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf frequency --pileup-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-flowerpools-rerun/mpileup/all-merged-units.mpileup.gz --omit-invariants --sample-name-prefix S --filter-samples-include S7,S15
+Command:                           grenedalf frequency
+
+Input:
+  --pileup-file                    "/lustre/scratch/lczech/grenepipe-runs/ath-evo-flowerpools-rerun/mpileup/all-merged-units.mpileup.gz"
+  --quality-encoding               sanger
+  --min-phred-score                0
+  --sync-file                      
+  --vcf-file                       
+  --sample-name-list               
+  --sample-name-prefix             'S'
+
+Filtering:
+  --filter-region                  
+  --filter-samples-include         "S7,S15"
+  --filter-samples-exclude
+
+Settings:
+  --type                           both
+  --no-coverage                    
+  --no-frequency                   
+  --no-counts                      
+  --omit-invariants                true
+
+Formatting:
+  --separator-char                 tab
+  --na-entry                       NA
+
+Output:
+  --out-dir                        .
+  --file-prefix                    
+  --file-suffix                    
+  --compress
+
+Global Options:
+  --allow-file-overwriting         
+  --verbose                        
+  --threads                        12
+  --log-file
+
+Run the following command to get the references that need to be cited:
+`grenedalf citation Czech2021-grenedalf`
+
+Started 2021-09-13 15:58:36
+
+Processed 119463302 genome positions of the input file, and thereof skipped 112714319 due to being invariant sites.
+
+Finished 2021-09-13 16:14:05
