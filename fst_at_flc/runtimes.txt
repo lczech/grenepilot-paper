@@ -1,0 +1,36 @@
+base 
+./grenedalf fst --sam-path /home/lucas/Downloads/ath-evo-francois-rerun --sam-min-map-qual 40 --sam-min-base-qual 20 --window-width 1000 --method spence-nei --omit-na-windows --pool-sizes 500 --allow-file-overwriting --filter-region 1
+
+Started 2022-05-23 16:16:10
+Finished 2022-05-23 17:04:48
+
+
+
+===================
+
+
+--parallel-block-size 4096
+
+Started 2022-05-23 17:04:49
+Finished 2022-05-23 17:17:47
+
+
+
+===================
+
+
+--parallel-block-size 4096
+--threads 1
+
+
+Started 2022-05-23 17:41:57
+Finished 2022-05-23 17:55:29
+
+
+=====================
+
+
+pure test to compare with 
+fst_speed_test
+
+./grenedalf fst --sam-path /home/lucas/Downloads/ath-evo-francois-rerun --window-width 1000 --method spence-nei --omit-na-windows --pool-sizes 500 --allow-file-overwriting --filter-region 1

@@ -1,0 +1,13 @@
+ID_Sequence	idSample	idSpot	tubeID	Date_soilSampling	Type_sample	nb_Individuals	nb_Individuals_tot	comment
+1	GR2016_1_1	1	1_0	13-Apr-16	pooled flowers	25+24+4+2+1	56	from growth chamber
+2	GR2016_1_1	2	2_0	13-Apr-16	pooled flowers	39+12+4+6+8	69	from growth chamber
+3	GR2016_1_1	3	3_0	13-Apr-16	pooled flowers	53+33+4+4+7	101	from growth chamber
+4	20160401_1_1	1	1_1	1-Apr-16	pooled flowers	80	80	from field
+5	20160401_2_1	2	2_1	1-Apr-16	pooled flowers	160	160	from field
+6	20160401_3_1	3	3_1	1-Apr-16	pooled flowers	200	200	from field
+7	20160422_1_1	1	1_2	22-Apr-16	pooled flowers	65	65	from field
+8	20160422_2_1	2	2_2	22-Apr-16	pooled flowers	205	205	from field
+9	20160422_3_1	3	3_2	22-Apr-16	pooled flowers	296	296	from field
+10	20160506_1	1	1_3	6-May-16	pooled flowers	19	19	from field
+11	20160506_2	2	2_3	6-May-16	pooled flowers	50	50	from field
+12	20160506_3	3	3_3	6-May-16	pooled flowers	97	97	from field
