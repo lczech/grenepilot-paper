@@ -87,4 +87,6 @@ tmp2<-plot_grid(ncol=1,nrow=2,rel_heights = c(10,1),plotlist = list(tmp1, rowrep
 save_plot("delta_12x8_600_0.05Moi.png", base_width = 12, base_height =8, dpi=600, tmp2)
 
 # Test the bessel correction
+francois
 head(francois)
+deltaf2<-c()
