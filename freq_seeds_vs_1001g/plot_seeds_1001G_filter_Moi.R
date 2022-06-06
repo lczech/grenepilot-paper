@@ -61,7 +61,23 @@ colnames(joined_both)[colnames(joined_both) == 'MAF.y'] <- 'MAF2'
 # See if things are still good
 #print(head(joined_otog))
 #print(head(joined_ttog))
+################################################################################
+#### FILTER FOR QUALITY! Jan 4 2022 Moi
+library(dplyr)
 
+joined_otog$SNP <- paste0(joined_otog$CHROM, "_", joined_otog$POS)
+joined_ttog$SNP <- paste0(joined_ttog$CHROM, "_", joined_ttog$POS)
+
+# bona fide 515 genomes SNPs
+s<-fread("515g.bim")
+joined_otog_qual<-inner_join(joined_otog,s,by=c("SNP"="V2"))
+joined_ttog_qual<-inner_join(joined_ttog,s,by=c("SNP"="V2"))
+
+# minimum alternative count 3 or more
+joined_otog_qual_mac <- dplyr::filter(joined_otog_qual, TOTAL.ALT_CNT >2)
+joined_ttog_qual_mac <- dplyr::filter(joined_ttog_qual, TOTAL.ALT_CNT >2)
+
+################################################################################
 # -----------------------------------------------------------------
 #     plot function
 # -----------------------------------------------------------------
@@ -90,42 +106,42 @@ make_plots <- function( data, myxlab, myylab, target ) {
     ggsave(paste0(target, "_freqs.png"), bg="white")
     #ggsave("seeds_vs_1001g_freqs_large.png", width=16, height=15)
 
-    # Plot hex
-    ggplot(data, aes(x=MAF1, y=MAF2)) +
-        geom_hex(bins=50) +
-        #scale_fill_viridis(direction=-1) +
-        scale_fill_viridis(direction=-1) +
-        scale_color_viridis(direction=-1) +
-        coord_fixed() +
-        xlab(myxlab) +
-        ylab(myylab) +
-        xlim(0, 0.5) +
-        ylim(0, 0.5) +
-        annotate("text", x = 0.02, y = Inf, hjust = 0, vjust=1, label = paste0(
-            "SD: ", format(mysd, digits=3), ", r: ", format(mypc, digits=3))
-        )
+    # # Plot hex
+    # ggplot(data, aes(x=MAF1, y=MAF2)) +
+    #     geom_hex(bins=50) +
+    #     #scale_fill_viridis(direction=-1) +
+    #     scale_fill_viridis(direction=-1) +
+    #     scale_color_viridis(direction=-1) +
+    #     coord_fixed() +
+    #     xlab(myxlab) +
+    #     ylab(myylab) +
+    #     xlim(0, 0.5) +
+    #     ylim(0, 0.5) +
+    #     annotate("text", x = 0.02, y = Inf, hjust = 0, vjust=1, label = paste0(
+    #         "SD: ", format(mysd, digits=3), ", r: ", format(mypc, digits=3))
+    #     )
+    # 
+    # ggsave(paste0(target, "_hex.png"), bg="white")
+    # #ggsave("seeds_vs_1001g_freqs_large.png", width=16, height=15)
 
-    ggsave(paste0(target, "_hex.png"), bg="white")
-    #ggsave("seeds_vs_1001g_freqs_large.png", width=16, height=15)
-
-
-    # Plot hex
-    ggplot(data, aes(x=MAF1, y=MAF2)) +
-        geom_hex(bins=50) +
-        #scale_fill_viridis(direction=-1) +
-        scale_fill_viridis(direction=-1, trans="log10") +
-        scale_color_viridis(direction=-1, trans="log10") +
-        coord_fixed() +
-        xlab(myxlab) +
-        ylab(myylab) +
-        xlim(0, 0.5) +
-        ylim(0, 0.5) +
-        annotate("text", x = 0.02, y = Inf, hjust = 0, vjust=1, label = paste0(
-            "SD: ", format(mysd, digits=3), ", r: ", format(mypc, digits=3))
-        )
-
-    ggsave(paste0(target, "_hex_log.png"), bg="white")
-    #ggsave("seeds_vs_1001g_freqs_large.png", width=16, height=15)
+# 
+#     # Plot hex
+#     ggplot(data, aes(x=MAF1, y=MAF2)) +
+#         geom_hex(bins=50) +
+#         #scale_fill_viridis(direction=-1) +
+#         scale_fill_viridis(direction=-1, trans="log10") +
+#         scale_color_viridis(direction=-1, trans="log10") +
+#         coord_fixed() +
+#         xlab(myxlab) +
+#         ylab(myylab) +
+#         xlim(0, 0.5) +
+#         ylim(0, 0.5) +
+#         annotate("text", x = 0.02, y = Inf, hjust = 0, vjust=1, label = paste0(
+#             "SD: ", format(mysd, digits=3), ", r: ", format(mypc, digits=3))
+#         )
+# 
+#     ggsave(paste0(target, "_hex_log.png"), bg="white")
+#     #ggsave("seeds_vs_1001g_freqs_large.png", width=16, height=15)
 
 }
 
@@ -133,7 +149,6 @@ make_plots <- function( data, myxlab, myylab, target ) {
 #     do plots
 # -----------------------------------------------------------------
 
-make_plots( joined_otog, "Seed MAF", "1001g MAF", "seeds_vs_1001g" )
-make_plots( joined_ttog, "Seed MAF", "231g MAF", "seeds_vs_231g" )
-make_plots( joined_both, "1001g MAF", "231g MAF", "1001g_vs_231g" )
+make_plots( joined_otog_qual_mac, "Seed MAF", "1001g MAF", "seeds_vs_1001g_quality515snps_2MAC" )
+make_plots( joined_ttog_qual_mac, "Seed MAF", "231g MAF", "seeds_vs_231g_quality515snps_2MAC" )
 

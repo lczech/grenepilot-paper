@@ -1,0 +1,26 @@
+PLINK v1.90b6.12 64-bit (28 Oct 2019)
+Options in effect:
+  --bfile 1001gbi
+  --freq
+
+Hostname: memex.carnegiescience.edu
+Working directory: /Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/1001g
+Start time: Fri May  7 11:31:11 2021
+
+Random number seed: 1620412271
+128699 MB RAM detected; reserving 64349 MB for main workspace.
+11769920 variants loaded from .bim file.
+1135 people (0 males, 0 females, 1135 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to plink.nosex .
+512 phenotype values loaded from .fam.
+Warning: Ignoring phenotypes of missing-sex samples.  If you don't want those
+phenotypes to be ignored, use the --allow-no-sex flag.
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 1135 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.759873.
+
+End time: Fri May  7 11:31:44 2021
+(founders only) written to plink.frq .
+
+End time: Fri May  7 11:31:41 2021
