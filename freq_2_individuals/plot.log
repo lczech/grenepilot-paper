@@ -1,0 +1,107 @@
+[1] "Reading table"
+[1] "At 1: COL0L1B"
+[1] "    no-cutoff: 36601034"
+[1] "    cutoff-0.1: 34040"
+[1] "    coverage-100-200: 3356453"
+[1] "    cutoff-0.1 coverage-100-200: 7688"
+[1] "At 2: COLRUM_POOL1"
+[1] "    no-cutoff: 36601034"
+[1] "    cutoff-0.1: 966013"
+[1] "    coverage-100-200: 2354340"
+[1] "    cutoff-0.1 coverage-100-200: 67888"
+[1] "At 3: COLRUM_POOL2"
+[1] "    no-cutoff: 36601034"
+[1] "    cutoff-0.1: 970464"
+[1] "    coverage-100-200: 1381727"
+[1] "    cutoff-0.1 coverage-100-200: 48008"
+[1] "At 4: COLRUM_POOL3"
+[1] "    no-cutoff: 36601034"
+[1] "    cutoff-0.1: 961119"
+[1] "    coverage-100-200: 2650261"
+[1] "    cutoff-0.1 coverage-100-200: 73632"
+[1] "At 5: GRENE231MM1"
+[1] "    no-cutoff: 36601034"
+[1] "    cutoff-0.1: 2135508"
+[1] "    coverage-100-200: 412123"
+[1] "    cutoff-0.1 coverage-100-200: 22991"
+[1] "At 6: GRENE231MM4"
+[1] "    no-cutoff: 36601034"
+[1] "    cutoff-0.1: 2128737"
+[1] "    coverage-100-200: 270330"
+[1] "    cutoff-0.1 coverage-100-200: 13075"
+[1] "At 7: GRENE231MM8"
+[1] "    no-cutoff: 36601034"
+[1] "    cutoff-0.1: 2172630"
+[1] "    coverage-100-200: 183444"
+[1] "    cutoff-0.1 coverage-100-200: 8094"
+[1] "At 8: UM20L1A"
+[1] "    no-cutoff: 36601034"
+[1] "    cutoff-0.1: 1239054"
+[1] "    coverage-100-200: 272553"
+[1] "    cutoff-0.1 coverage-100-200: 13394"
+[1] "At 9: TWOFH1"
+[1] "    no-cutoff: 36601034"
+[1] "    cutoff-0.1: 1006436"
+[1] "    coverage-100-200: 3802306"
+[1] "    cutoff-0.1 coverage-100-200: 109257"
+[1] "At 10: TWOFH3"
+[1] "    no-cutoff: 36601034"
+[1] "    cutoff-0.1: 1025380"
+[1] "    coverage-100-200: 355392"
+[1] "    cutoff-0.1 coverage-100-200: 19680"
+[1] "At 11: TWOFH5"
+[1] "    no-cutoff: 36601034"
+[1] "    cutoff-0.1: 993761"
+[1] "    coverage-100-200: 3588028"
+[1] "    cutoff-0.1 coverage-100-200: 103813"
+Warning messages:
+1: Transformation introduced infinite values in discrete y-axis
+2: Removed 1533 rows containing missing values (geom_point).
+3: Removed 1533 rows containing non-finite values (stat_bin2d).
+4: Removed 1533 rows containing non-finite values (stat_bin).
+5: Removed 1533 rows containing non-finite values (stat_bin).
+6: Transformation introduced infinite values in continuous y-axis
+7: Removed 1 rows containing missing values (geom_bar).
+8: Transformation introduced infinite values in continuous y-axis
+9: Removed 1 rows containing missing values (geom_bar).
+10: Transformation introduced infinite values in discrete y-axis
+11: Removed 462 rows containing missing values (geom_point).
+12: Removed 462 rows containing non-finite values (stat_bin2d).
+13: Removed 462 rows containing non-finite values (stat_bin).
+14: Removed 462 rows containing non-finite values (stat_bin).
+15: Transformation introduced infinite values in discrete y-axis
+16: Removed 471 rows containing missing values (geom_point).
+17: Removed 471 rows containing non-finite values (stat_bin2d).
+18: Removed 471 rows containing non-finite values (stat_bin).
+19: Removed 471 rows containing non-finite values (stat_bin).
+20: Transformation introduced infinite values in discrete y-axis
+21: Removed 517 rows containing missing values (geom_point).
+22: Removed 517 rows containing non-finite values (stat_bin2d).
+23: Removed 517 rows containing non-finite values (stat_bin).
+24: Removed 517 rows containing non-finite values (stat_bin).
+25: Transformation introduced infinite values in discrete y-axis
+26: Removed 17704 rows containing missing values (geom_point).
+27: Removed 17704 rows containing non-finite values (stat_bin2d).
+28: Removed 17704 rows containing non-finite values (stat_bin).
+29: Removed 17704 rows containing non-finite values (stat_bin).
+30: Transformation introduced infinite values in discrete y-axis
+31: Removed 24224 rows containing missing values (geom_point).
+32: Removed 24224 rows containing non-finite values (stat_bin2d).
+33: Removed 24224 rows containing non-finite values (stat_bin).
+34: Removed 24224 rows containing non-finite values (stat_bin).
+35: Transformation introduced infinite values in discrete y-axis
+36: Removed 31790 rows containing missing values (geom_point).
+37: Removed 31790 rows containing non-finite values (stat_bin2d).
+38: Removed 31790 rows containing non-finite values (stat_bin).
+39: Removed 31790 rows containing non-finite values (stat_bin).
+40: Transformation introduced infinite values in discrete y-axis
+41: Removed 1291638 rows containing missing values (geom_point).
+42: Removed 1291638 rows containing non-finite values (stat_bin2d).
+43: Removed 1291638 rows containing non-finite values (stat_bin).
+44: Removed 1291638 rows containing non-finite values (stat_bin).
+45: Transformation introduced infinite values in discrete y-axis
+46: Removed 349 rows containing missing values (geom_point).
+47: Removed 349 rows containing non-finite values (stat_bin2d).
+48: Removed 349 rows containing non-finite values (stat_bin).
+49: Removed 349 rows containing non-finite values (stat_bin).
+50: Transformation introduced infinite values in discrete y-axis
