@@ -49,6 +49,18 @@ for (f in vcf_freq_files) {
 #pileup_freq_data <- read.table(pileup_freq_file, sep="\t", header=TRUE)
 pileup_freq_data <- fread(pileup_freq_file, sep="\t", header=TRUE)
 
+################################################################################
+#### FILTER FOR QUALITY! Jan 4 2022 Moi
+# pileup_freq_data_backup<-pileup_freq_data
+
+pileup_freq_data_mac <- dplyr::filter(pileup_freq_data, TOTAL.ALT_CNT >2)
+
+s<-fread("515g.bim")
+pileup_freq_data_mac_qual<-inner_join(pileup_freq_data_mac,s,by=c("CHROM_POS"="V2"))
+
+pileup_freq_data<-pileup_freq_data_mac_qual
+
+################################################################################
 # head(pileup_freq_data)
 
 # =================================================================================================
@@ -92,41 +104,41 @@ make_plots <- function(target_dir, basename, joined_data, mytitle){
         suppressMessages(ggsave(paste0(target_dir, basename, "-scatter.png"), bg="white"))
         #ggsave(paste(f,"-large.png", sep=""), width=16, height=15)
 
-        # -------------------------------------------------------------------------
-        #     Hex scatter plot seeds vs caller
-        # -------------------------------------------------------------------------
-
-        # geom hex produces ugly white dots in the output,
-        # so we have to force it to draw borders of the same color
-        # around each hexagon... see https://github.com/tidyverse/ggplot2/issues/2157
-        # and https://stackoverflow.com/questions/52006888/ggplot2-geom-hex-white-border
-        ggplot(joined_data, aes(x=TOTAL.FREQ.x, y=TOTAL.FREQ.y)) +
-            #geom_hex(aes(colour = ..count..), bins=50) +
-            geom_hex(bins=50) +
-            #scale_fill_viridis(direction=-1) +
-            scale_fill_viridis(direction=-1) +
-            scale_color_viridis(direction=-1) +
-            coord_fixed() +
-            xlab("Frequency (bam)") +
-            ylab("Frequency (vcf)") +
-            labs(title=mytitle)  +
-            annotate("text", x = 0.02, y = Inf, hjust = 0, vjust=1, label = paste0("SD: ", format(stddev, digits=3), ", r: ", format(pcc, digits=3)))
-
-        suppressMessages(ggsave(paste0(target_dir, basename,"-hex.png"), width=9, height=7, bg="white"))
-
-        ggplot(joined_data, aes(x=TOTAL.FREQ.x, y=TOTAL.FREQ.y)) +
-            #geom_hex(aes(colour = ..count..), bins=50) +
-            geom_hex(bins=50) +
-            #scale_fill_viridis(trans = "log10", direction=-1) +
-            scale_fill_viridis(trans = "log10", direction=-1) +
-            scale_color_viridis(trans="log10", direction=-1) +
-            coord_fixed() +
-            xlab("Frequency (bam)") +
-            ylab("Frequency (vcf)") +
-            labs(title=mytitle)  +
-            annotate("text", x = 0.02, y = Inf, hjust = 0, vjust=1, label = paste0("SD: ", format(stddev, digits=3), ", r: ", format(pcc, digits=3)))
-
-        suppressMessages(ggsave(paste0(target_dir, basename,"-hex-log.png"), width=9, height=7, bg="white"))
+        # # -------------------------------------------------------------------------
+        # #     Hex scatter plot seeds vs caller
+        # # -------------------------------------------------------------------------
+        # 
+        # # geom hex produces ugly white dots in the output,
+        # # so we have to force it to draw borders of the same color
+        # # around each hexagon... see https://github.com/tidyverse/ggplot2/issues/2157
+        # # and https://stackoverflow.com/questions/52006888/ggplot2-geom-hex-white-border
+        # ggplot(joined_data, aes(x=TOTAL.FREQ.x, y=TOTAL.FREQ.y)) +
+        #     #geom_hex(aes(colour = ..count..), bins=50) +
+        #     geom_hex(bins=50) +
+        #     #scale_fill_viridis(direction=-1) +
+        #     scale_fill_viridis(direction=-1) +
+        #     scale_color_viridis(direction=-1) +
+        #     coord_fixed() +
+        #     xlab("Frequency (bam)") +
+        #     ylab("Frequency (vcf)") +
+        #     labs(title=mytitle)  +
+        #     annotate("text", x = 0.02, y = Inf, hjust = 0, vjust=1, label = paste0("SD: ", format(stddev, digits=3), ", r: ", format(pcc, digits=3)))
+        # 
+        # suppressMessages(ggsave(paste0(target_dir, basename,"-hex.png"), width=9, height=7, bg="white"))
+        # 
+        # ggplot(joined_data, aes(x=TOTAL.FREQ.x, y=TOTAL.FREQ.y)) +
+        #     #geom_hex(aes(colour = ..count..), bins=50) +
+        #     geom_hex(bins=50) +
+        #     #scale_fill_viridis(trans = "log10", direction=-1) +
+        #     scale_fill_viridis(trans = "log10", direction=-1) +
+        #     scale_color_viridis(trans="log10", direction=-1) +
+        #     coord_fixed() +
+        #     xlab("Frequency (bam)") +
+        #     ylab("Frequency (vcf)") +
+        #     labs(title=mytitle)  +
+        #     annotate("text", x = 0.02, y = Inf, hjust = 0, vjust=1, label = paste0("SD: ", format(stddev, digits=3), ", r: ", format(pcc, digits=3)))
+        # 
+        # suppressMessages(ggsave(paste0(target_dir, basename,"-hex-log.png"), width=9, height=7, bg="white"))
 
     }
 

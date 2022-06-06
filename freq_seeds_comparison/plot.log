@@ -106,3 +106,4 @@ The `hexbin` package is required for `stat_binhex()`
 The `hexbin` package is required for `stat_binhex()`
 50: Computation failed in `stat_binhex()`:
 The `hexbin` package is required for `stat_binhex()`
+[1] "Reading tables"
