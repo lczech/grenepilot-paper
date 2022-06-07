@@ -1,35 +1,55 @@
-                                         __ 
-                               |      / /   
-   ___  ___  ___  ___  ___  ___| ___ ( (    
-  |   )|   )|___)|   )|___)|   )|   )| |___ 
-  |__/ |    |__  |  / |__  |__/ |__/|| |    
-  __/                                       
-       v0.0.0 (c) 2020-2021 by Lucas Czech
+                                                 ,--;                           
+                                                 \  \          ----.            
+    ,-----.           ,----.;---.  ,--.  ,----.   \  \   ---.   |  |    ;-.----.
+   /  ---./ ;-,----. / .---'|  , `.|  | / .---' ,--'  \   \  \  |  |    | .---' 
+  |  ( .---.|  ´` .'|  `--  |  |`  `  ||  `--  / .--.  )/ .-. \ |  |    | `--,  
+   \  --'  ||  |\  \ \ `---.|  |  \   | \ `---.\ `--' //  `-'  \|  '---.| |`    
+    `----´ '`--' '--' `----'`--'   `--:  `----' `----' `------'.`------'| |     
+                                                                        | |     
+       ========================================================////-    ,-'     
+       v0.2.0-beta (c) 2020-2022 by Lucas Czech
 
-Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf fst --pileup-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-merged-units.mpileup.gz --window-width 1 --omit-na-windows --pool-sizes 56,80,65,19,69,160,205,50,101,200,296,97 --sample-name-list /lustre/scratch/lczech/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-merged-units.names.txt --file-suffix -width-1
+Invocation:                        /home/lczech/grenedalf/bin/grenedalf fst --pileup-path /Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas_quick_for_paper_submission/ath-evo-francois-rerun/mpileup/all-merged-units.mpileup.gz --window-width 1 --method spence-nei --omit-na-windows --pool-sizes /home/lczech/safedata/ath_evo/grenepilot_lucas/fst_francois_all2all/poolsizes.txt --sample-name-list /Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas_quick_for_paper_submission/ath-evo-francois-rerun/mpileup/all-merged-units.names.txt --file-suffix -width-1 --threads 4
 Command:                           grenedalf fst
 
-Input:
-  --pileup-file                    "/lustre/scratch/lczech/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-merged-units.mpileup.gz"
-  --quality-encoding               sanger
-  --min-phred-score                0
-  --sync-file                      
-  --vcf-file                       
-  --sample-name-list               "/lustre/scratch/lczech/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-merged-units.names.txt"
+Input SAM/BAM/CRAM:
+  --sam-path                       []
+  --sam-min-map-qual               0
+  --sam-min-base-qual              0
+  --sam-split-by-rg
+
+Input (m)pileup:
+  --pileup-path                    "/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas_quick_for_paper_submission/ath-evo-francois-rerun/mpileup/all-merged-units.mpileup.gz"
+  --pileup-min-base-qual           0
+  --pileup-quality-encoding        sanger
+
+Input sync:
+  --sync-path                      []
+
+Input VCF:
+  --vcf-path                       []
+
+Input Settings:
+  --multi-file-set                 union
+
+Sample Names:
+  --sample-name-list               "/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas_quick_for_paper_submission/ath-evo-francois-rerun/mpileup/all-merged-units.names.txt"
   --sample-name-prefix
 
 Filtering:
   --filter-region                  
+  --filter-region-bed              
+  --filter-region-gff              
   --filter-samples-include         
   --filter-samples-exclude
 
-Sliding Window:
+Window:
   --window-width                   1
   --window-stride                  0
 
 Settings:
-  --pool-sizes                     "56,80,65,19,69,160,205,50,101,200,296,97"
-  --method                         conventional
+  --pool-sizes                     "/home/lczech/safedata/ath_evo/grenepilot_lucas/fst_francois_all2all/poolsizes.txt"
+  --method                         "spence-nei"
   --omit-na-windows                true
   --comparand                      
   --second-comparand               
@@ -48,13 +68,15 @@ Output:
 Global Options:
   --allow-file-overwriting         
   --verbose                        
-  --threads                        12
+  --threads                        4
   --log-file
 
 Run the following command to get the references that need to be cited:
 `grenedalf citation Czech2021-grenedalf Kofler2011-PoPoolation2`
 
-Started 2021-09-22 20:15:36
+Started 2022-06-01 18:14:47
+
+Processing 12 samples
 
 Computing F_ST between 66 pairs of samples.
 At chromosome 1
@@ -63,8 +85,5 @@ At chromosome 3
 At chromosome 4
 At chromosome 5
 At chromosome mitochondria
-At chromosome chloroplast
+Error: Malformed pileup gzip/zlib-compressed input file (/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas_quick_for_paper_submission/ath-evo-francois-rerun/mpileup/all-merged-units.mpileup.gz) at 119320870:1: unordered chromosomes and positions
 
-Processed 7 chromosomes with 119475346 total positions in 47196070 windows with F_ST values, and skipped 72471075 windows without any F_ST values.
-
-Finished 2021-09-22 22:27:43

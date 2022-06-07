@@ -1,35 +1,55 @@
-                                         __ 
-                               |      / /   
-   ___  ___  ___  ___  ___  ___| ___ ( (    
-  |   )|   )|___)|   )|___)|   )|   )| |___ 
-  |__/ |    |__  |  / |__  |__/ |__/|| |    
-  __/                                       
-       v0.0.0 (c) 2020-2021 by Lucas Czech
+                                                 ,--;                           
+                                                 \  \          ----.            
+    ,-----.           ,----.;---.  ,--.  ,----.   \  \   ---.   |  |    ;-.----.
+   /  ---./ ;-,----. / .---'|  , `.|  | / .---' ,--'  \   \  \  |  |    | .---' 
+  |  ( .---.|  ´` .'|  `--  |  |`  `  ||  `--  / .--.  )/ .-. \ |  |    | `--,  
+   \  --'  ||  |\  \ \ `---.|  |  \   | \ `---.\ `--' //  `-'  \|  '---.| |`    
+    `----´ '`--' '--' `----'`--'   `--:  `----' `----' `------'.`------'| |     
+                                                                        | |     
+       ========================================================////-    ,-'     
+       v0.2.0-beta (c) 2020-2022 by Lucas Czech
 
-Invocation:                        /Carnegie/DPB/Homes/Users/lczech/grenedalf/bin/grenedalf fst --pileup-file /lustre/scratch/lczech/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-merged-units.mpileup.gz --window-width 10000 --omit-na-windows --pool-sizes /home/lczech/safedata/ath_evo/grenepilot_lucas/fst_francois_all2all/poolsizes.txt --sample-name-list /lustre/scratch/lczech/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-merged-units.names.txt --file-suffix -width-10k
+Invocation:                        /central/home/lczech/grenedalf/bin/grenedalf fst --pileup-path /central/groups/carnegie_poc/lczech/lustre_scratch/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-merged-units.mpileup.gz --window-width 10000 --method spence-nei --omit-na-windows --pool-sizes /central/groups/carnegie_poc/lczech/grenepilot-paper/fst_francois_all2all/poolsizes.txt --sample-name-list /central/groups/carnegie_poc/lczech/lustre_scratch/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-merged-units.names.txt --file-suffix -width-10k --threads 4
 Command:                           grenedalf fst
 
-Input:
-  --pileup-file                    "/lustre/scratch/lczech/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-merged-units.mpileup.gz"
-  --quality-encoding               sanger
-  --min-phred-score                0
-  --sync-file                      
-  --vcf-file                       
-  --sample-name-list               "/lustre/scratch/lczech/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-merged-units.names.txt"
+Input SAM/BAM/CRAM:
+  --sam-path                       []
+  --sam-min-map-qual               0
+  --sam-min-base-qual              0
+  --sam-split-by-rg
+
+Input (m)pileup:
+  --pileup-path                    "/central/groups/carnegie_poc/lczech/lustre_scratch/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-merged-units.mpileup.gz"
+  --pileup-min-base-qual           0
+  --pileup-quality-encoding        sanger
+
+Input sync:
+  --sync-path                      []
+
+Input VCF:
+  --vcf-path                       []
+
+Input Settings:
+  --multi-file-set                 union
+
+Sample Names:
+  --sample-name-list               "/central/groups/carnegie_poc/lczech/lustre_scratch/grenepipe-runs/ath-evo-francois-rerun/mpileup/all-merged-units.names.txt"
   --sample-name-prefix
 
 Filtering:
   --filter-region                  
+  --filter-region-bed              
+  --filter-region-gff              
   --filter-samples-include         
   --filter-samples-exclude
 
-Sliding Window:
+Window:
   --window-width                   10000
   --window-stride                  0
 
 Settings:
-  --pool-sizes                     "/home/lczech/safedata/ath_evo/grenepilot_lucas/fst_francois_all2all/poolsizes.txt"
-  --method                         conventional
+  --pool-sizes                     "/central/groups/carnegie_poc/lczech/grenepilot-paper/fst_francois_all2all/poolsizes.txt"
+  --method                         "spence-nei"
   --omit-na-windows                true
   --comparand                      
   --second-comparand               
@@ -48,13 +68,15 @@ Output:
 Global Options:
   --allow-file-overwriting         
   --verbose                        
-  --threads                        12
+  --threads                        4
   --log-file
 
 Run the following command to get the references that need to be cited:
 `grenedalf citation Czech2021-grenedalf Kofler2011-PoPoolation2`
 
-Started 2021-09-22 18:14:25
+Started 2022-06-01 15:31:11
+
+Processing 12 samples
 
 Computing F_ST between 66 pairs of samples.
 At chromosome 1
@@ -67,4 +89,4 @@ At chromosome chloroplast
 
 Processed 7 chromosomes with 119475346 total positions in 11958 windows with F_ST values, and skipped 11 windows without any F_ST values.
 
-Finished 2021-09-22 18:52:43
+Finished 2022-06-01 15:54:29
