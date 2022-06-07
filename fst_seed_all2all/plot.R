@@ -7,7 +7,8 @@ theme_set(theme_cowplot())
 suppressMessages(library(viridis))
 
 # Input data
-infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/fst_seed_all2all/fst-width-10000.csv"
+#infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/fst_seed_all2all/fst-width-10000.csv"
+infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas_quick_for_paper_submission/grenepilot-paper/fst_seed_all2all/fst-width-10000.csv"
 data = read.table( infile, sep="\t", header=TRUE )
 #head(data)
 
@@ -41,7 +42,7 @@ ggplot(data_long, aes(x=Pair, y=FST)) +
     geom_boxplot() +
     coord_flip() +
     scale_x_discrete(limits=rev) +
-    ylim(0.0, 0.3) +
+    ylim(0.0, 0.1) +
     geom_hline(yintercept = mean_sub, color="gray") +
     annotate("text",  x=-Inf, y = Inf, label = paste("Mean FST:", format(mean_sub, digits=3)), vjust=-1, hjust=1, color="gray")
 
