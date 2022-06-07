@@ -8,5 +8,5 @@ This repository contains the scripts and analyses for the GrENE-net pilot study
 
 This manuscript has also been submitted to eLife.
 
-Furthermore, see [lczech/pool-seq-pop-gen-stats](https://github.com/lczech/pool-seq-pop-gen-stats) for our equations document, containing the pool-Sequencing corrections for population genetic statistics, and see [grenedalf](https://github.com/lczech/grenedalf) for our implementation of these equations.
+Furthermore, see [lczech/pool-seq-pop-gen-stats](https://github.com/lczech/pool-seq-pop-gen-stats) for our equations document, containing the pool-sequencing corrections for population genetic statistics, and see [grenedalf](https://github.com/lczech/grenedalf) for our implementation of these equations.
 
