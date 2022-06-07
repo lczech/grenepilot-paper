@@ -16,8 +16,8 @@ library("wesanderson")
 
 # Input data
 #infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/fst_francois_all2all/fst-width-10k.csv"
-infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/fst_francois_all2all/fst-width-1.csv"
 #infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/fst_francois_all2all/head.csv"
+infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas_quick_for_paper_submission/grenepilot-paper/fst_francois_all2all/fst-width-10k.csv"
 data = read.table( infile, sep="\t", header=TRUE )
 #head(data)
 
@@ -255,7 +255,7 @@ make_boxplot <- function( col, colnames, title, filename, width=12, height=8, gr
         scale_color_manual(values = mycolors) +
         coord_flip() +
         scale_x_discrete(limits=rev) +
-        ylim(0.0, 0.3) +
+        ylim(0.0, 0.2) +
         geom_hline(yintercept = mean_sub, color="gray") +
         annotate("text",  x=-Inf, y = Inf, label = paste("Mean FST:", format(mean_sub, digits=3)), vjust=-1, hjust=1, color="gray") +
         ggtitle(title) +

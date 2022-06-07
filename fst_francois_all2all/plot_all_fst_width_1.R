@@ -19,8 +19,10 @@ print("reading")
 bim <- fread( "/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/1001g/515g.bim" , sep=" ", header=FALSE )
 colnames(bim)[which(names(bim) == "V2")] <- "CHROM_POS"
 
-infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/fst_francois_all2all/fst-width-1.csv"
+#infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/fst_francois_all2all/fst-width-1.csv"
+infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas_quick_for_paper_submission/grenepilot-paper/fst_francois_all2all/fst-width-1.csv"
 #infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas/fst_francois_all2all/head.csv"
+infile="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/ath_evo/grenepilot_lucas_quick_for_paper_submission/grenepilot-paper/fst_francois_all2all/fst-width-1-S2-only.csv"
 df <- fread( infile, sep="\t", header=TRUE )
 
 # Need some conversions and shit for this to work...
@@ -52,6 +54,9 @@ df$SNP[df$CHROM == 5 & df$START >= 3167316 & df$START <= 3185514] <- "X"
 #S9  3_2 296 
 #S12 3_3 97 
 
+outdir="fst_width_1/"
+outdir="fst_width_1_test/"
+
 print("manhattan")
 for(i in 5:(ncol(df)-2)) {
 
@@ -67,19 +72,32 @@ for(i in 5:(ncol(df)-2)) {
     cp$CHROM_POS <- df$CHROM_POS
     cp <- na.omit(cp)
 
+    # just bona fide
+    bf <- inner_join( cp, bim, by="CHROM_POS")
+
+    if(TRUE){
+
     # If we want to save a png, we need to overwrite the output device manually first...
     #par(mar=c(1,1,1,1))
-    png(paste0(sample,"-all.png"), width=1000, height=400)
+    png(paste0(outdir,sample,"-all.png"), width=2000, height=800)
     manhattan(cp, chr="CHROM", bp="POS", snp="SNP", p="FRQ", logp=FALSE, ylab="Fst", ylim = c(0, 1.05), highlight="X" )
     #manhattan(df, chr="CHROM", bp="START", snp=NULL, p=sample, logp=FALSE )
     dev.off()
 
-    bf <- inner_join( cp, bim, by="CHROM_POS")
-    png(paste0(sample,"-bona-fide.png"), width=1000, height=400)
+    png(paste0(outdir,sample,"-bona-fide.png"), width=2000, height=800)
     manhattan(bf, chr="CHROM", bp="POS", snp="SNP", p="FRQ", logp=FALSE, ylab="Fst", ylim = c(0, 1.05), highlight="X" )
     #manhattan(df, chr="CHROM", bp="START", snp=NULL, p=sample, logp=FALSE )
     dev.off()
 
+    }
+
+    if(FALSE){
+
+    ggplot(bf, aes(x=FRQ)) + geom_histogram(bins=100) + coord_flip() + xlab("") + ylab("") + xlim(-0.1, 1)
+    ggsave(paste0(outdir,sample,"-hist.png"), bg="white")
+    ggsave(paste0(outdir,sample,"-hist.svg"), bg="white")
+
+    }
 }
 
 # Of course, we need special treatment to be able to save it as we want...
