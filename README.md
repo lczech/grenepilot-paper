@@ -6,7 +6,7 @@ This repository contains the scripts and analyses for the GrENE-net pilot study
 > Lucas Czech, Yunru Peng, Jeffrey P. Spence, Patricia L.M. Lang, Tatiana Bellagio, Julia Hildebrandt, Katrin Fritschi, Rebecca Schwab, Beth A. Rowan, GrENE-net consortium, Detlef Weigel, J.F. Scheepens, François Vasseur, Moises Exposito-Alonso.</br>
 > *bioRxiv*, 2022.02.02.477408; [doi:10.1101/2022.02.02.477408](https://doi.org/10.1101/2022.02.02.477408)
 
-This manuscript has also been submitted to eLife.
+This manuscript has also been submitted to eLife. We apologize that due to time constraints, we were not yet able to fully bring this repository up to our standards for reproducible science. If you have any problems or questions, please reach out to us by [opening an issue](https://github.com/lczech/grenepilot-paper/issues).
 
 Furthermore, see [lczech/pool-seq-pop-gen-stats](https://github.com/lczech/pool-seq-pop-gen-stats) for our equations document, containing the pool-sequencing corrections for population genetic statistics, and see [grenedalf](https://github.com/lczech/grenedalf) for our implementation of these equations.
 
